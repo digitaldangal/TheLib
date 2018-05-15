@@ -1,0 +1,1 @@
+{"version":3,"file":"bundles/pages/index.js","sources":["webpack:///pages/index.js"],"sourcesContent":["[1, 2, 3].map((x) => {\n  const y = x + 1;\n  return x * y;\n});\n\n\n\n\n// WEBPACK FOOTER //\n// pages/index.js"],"mappings":";;;;;;;;;AAAA;AACA;AACA;AACA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;A","sourceRoot":""}
