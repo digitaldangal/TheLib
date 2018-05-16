@@ -1,16 +1,14 @@
-// Testing ESLint
-// To disable Eslint on a line of code, add the following code to that line:
-// eslint-disable-line
+/*  eslint-disable  */
+import Head from 'next/head';
 
+const Index = () => (
+  <div style={{ padding: '10px 45px' }}>
+    <Head>
+      <title>Index page</title>
+      <meta name="description" content="This is description of Index page" />
+    </Head>
+    <p>Content on Index page</p>
+  </div>
+);
 
-// To disable Eslint inside a file, add the following code to the top of that file:
-/* eslint-disable */
-
-
-
-// [1, 2, 3].map((x) => {
-//   const y = x + 1;
-//   return x * y;
-// });
-
-// foo(reallyLongArg(), reallyReallyLongArg(), omgSoManyParameters(), IShouldRefactorThis(), isThereSeriouslyAnotherOne());
+export default Index;
