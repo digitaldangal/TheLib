@@ -1,4 +1,3 @@
-/*  eslint-disable  */
 import Link from 'next/link';
 
 import Toolbar from 'material-ui/Toolbar';

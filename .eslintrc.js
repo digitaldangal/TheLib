@@ -9,6 +9,7 @@ module.exports = {
   rules: {
     'max-len': ['error', 100],
     'no-underscore-dangle': ['error', { allow: ['_id'] }],
+    'no-console': 0,
     'prefer-destructuring': [
       'error',
       {
