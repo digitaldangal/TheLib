@@ -12502,7 +12502,8 @@ var Index = function Index(_ref) {
       lineNumber: 14
     }
   }, "Email: ", user.email));
-};
+}; // Static method that passes data to a page by populating the props of my component
+
 
 Index.getInitialProps =
 /*#__PURE__*/
@@ -12531,7 +12532,8 @@ function () {
   return function (_x) {
     return _ref3.apply(this, arguments);
   };
-}();
+}(); // Passing user prop to Index
+
 
 Index.propTypes = {
   user: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.shape({

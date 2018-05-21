@@ -1,6 +1,7 @@
 import express from 'express';
 // next server
 import next from 'next';
+// import mongoose from 'mongoose';
 
 const port = process.env.PORT || 8000;
 const ROOT_URL = process.env.ROOT_URL || `http://localhost:${port}`;
@@ -15,10 +16,10 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  // Now I'm connected to my Index page - a state-less functional component at the time
-  // server.get('/', (req, res) => {
-  //   res.send('express page');
-  // });
+  server.get('/', (req, res) => {
+    const user = { email: 'varcodes1@gmail.com' };
+    app.render(req, res, '/', { user });
+  });
 
   server.get('*', (req, res) => handle(req, res));
 
@@ -27,4 +28,3 @@ app.prepare().then(() => {
     console.log(`> Ready on ${ROOT_URL}`); // eslint-disable-line no-console
   });
 });
-
