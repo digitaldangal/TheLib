@@ -60,6 +60,7 @@ app.prepare().then(() => {
   server.use(session(sess));
 
   server.get('/', async (req, res) => {
+    req.session.foo = 'bar';
     const user = await User.findOne({ slug: 'devdad' });
     app.render(req, res, '/', { user });
   });
