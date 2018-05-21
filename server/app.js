@@ -1,10 +1,16 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
+// Creates session and save a cookie to the browser
+import session from 'express-session';
+// Connects to my DB an saves the session
+import mongoSessionStore from 'connect-mongo';
 import next from 'next';
 import User from './models/User';
 
 dotenv.config();
+
+// const MongoStore = mongoSessionStore(session());
 
 // Passing NODE_ENV to next server. True when the env is not prod, false when env is in prod
 const dev = process.env.NODE_ENV !== 'production';
@@ -23,6 +29,30 @@ const handle = app.getRequestHandler();
 // GET Request function - next docs
 app.prepare().then(() => {
   const server = express();
+
+  server.use(session({
+    // cookie name
+    name: 'devdadbook.sid',
+    // key used to encode/decode the sessions cookie, could be anything.
+    // a cookie does not contain session data but only the session ID (encoded with secret),
+    // the server stores session data in memory.
+    secret: 'HD2w.)q*VqRT4/#NK2M/,E^B)}FED5fWU!dKe[wk',
+    // forces the session to be saved to "store", even if the session was not modified.
+    resave: false,
+    // saves any new unmodified (uninitialized) session to "store".
+    saveUninitialized: false,
+    // The sessions cookie, set to httpOnly for local development.
+    cookie: {
+      // This means that the cookie will not be available to client-side JS and will
+      // only be sent with a req to the server.
+      // Simply put, the cookie is only available to
+      // server via HTTP and not accessible from client-side JS. This is a security measure.
+      httpOnly: true,
+      // The browser will remove the cookie after maxAge milliseconds.
+      // In this case, the maxAge is 14 days.
+      maxAge: 14 * 24 * 60 * 60 * 1000,
+    },
+  }));
 
   server.get('/', async (req, res) => {
     const user = await User.findOne({ slug: 'devdad' });

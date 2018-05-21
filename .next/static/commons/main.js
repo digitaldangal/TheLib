@@ -27551,7 +27551,7 @@ var React__default = _interopDefault(React);
 var shallowEqual = _interopDefault(__webpack_require__("./node_modules/shallowequal/index.js"));
 var levenshtein = _interopDefault(__webpack_require__("./node_modules/fast-levenshtein/levenshtein.js"));
 var PropTypes = _interopDefault(__webpack_require__("./node_modules/next/node_modules/prop-types/index.js"));
-var reactLifecyclesCompat = __webpack_require__("./node_modules/react-hot-loader/node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js");
+var reactLifecyclesCompat = __webpack_require__("./node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js");
 var hoistNonReactStatic = _interopDefault(__webpack_require__("./node_modules/hoist-non-react-statics/index.js"));
 
 /* eslint-disable no-underscore-dangle */
@@ -27902,9 +27902,10 @@ function mergeComponents(ProxyComponent, NextComponent, InitialComponent, lastIn
 
         var nextString = String(nextAttr);
         var injectedBefore = injectedMembers[key];
-        if (nextString !== String(prevAttr) || injectedBefore && nextString !== String(injectedBefore)) {
+        var isFunction = nextString.indexOf('function') >= 0 || nextString.indexOf('=>') >= 0;
+        if (nextString !== String(prevAttr) || injectedBefore && nextString !== String(injectedBefore) || isFunction) {
           if (!hasRegenerate) {
-            if (nextString.indexOf('function') < 0 && nextString.indexOf('=>') < 0) {
+            if (!isFunction) {
               // just copy prop over
               injectedCode[key] = nextAttr;
             } else {
@@ -28264,9 +28265,7 @@ function createClassProxy(InitialComponent, proxyKey, options) {
 
     savedDescriptors = transferStaticProps(_ProxyFacade, savedDescriptors, PreviousComponent, NextComponent);
 
-    if (isFunctionalComponent || !ProxyComponent) {
-      // nothing
-    } else {
+    if (isFunctionalComponent || !ProxyComponent) ; else {
       checkLifeCycleMethods(ProxyComponent, NextComponent);
       Object.setPrototypeOf(ProxyComponent.prototype, NextComponent.prototype);
       defineProxyMethods(ProxyComponent, NextComponent.prototype);
@@ -28678,9 +28677,7 @@ var mergeInject = function mergeInject(a, b, instance) {
   if (flatA.length === flatB.length) {
     return mapChildren(flatA, flatB);
   }
-  if (flatB.length === 0 && flatA.length === 1 && _typeof(flatA[0]) !== 'object') {
-    // terminal node
-  } else {
+  if (flatB.length === 0 && flatA.length === 1 && _typeof(flatA[0]) !== 'object') ; else {
     logger.warn('React-hot-loader: unable to merge ', a, 'and children of ', instance);
     stackReport();
   }
@@ -28690,7 +28687,7 @@ var mergeInject = function mergeInject(a, b, instance) {
 var transformFlowNode = function transformFlowNode(flow) {
   return flow.reduce(function (acc, node) {
     if (isFragmentNode(node) && node.props && node.props.children) {
-      return [].concat(acc, node.props.children);
+      return [].concat(acc, filterNullArray(asArray(node.props.children)));
     }
     return [].concat(acc, [node]);
   }, []);
@@ -28740,14 +28737,16 @@ var hotReplacementRender = function hotReplacementRender(instance, stack) {
     var next = function next(instance) {
       // copy over props as long new component may be hidden inside them
       // child does not have all props, as long some of them can be calculated on componentMount.
-      var nextProps = _extends({}, instance.props, child.nextProps || {}, child.props || {});
+      var realProps = instance.props;
+      var nextProps = _extends({}, realProps, child.nextProps || {}, child.props || {});
 
       if (isReactClass$1(instance) && instance.componentWillUpdate) {
         // Force-refresh component (bypass redux renderedComponent)
-        instance.componentWillUpdate(nextProps, instance.state);
+        instance.componentWillUpdate(_extends({}, realProps), instance.state);
       }
       instance.props = nextProps;
       hotReplacementRender(instance, stackChild);
+      instance.props = realProps;
     };
 
     // text node
@@ -29113,7 +29112,7 @@ if (false) {
 
 /***/ }),
 
-/***/ "./node_modules/react-hot-loader/node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js":
+/***/ "./node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29126,9 +29125,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * LICENSE file in the root directory of this source tree.
  */
 
-// Older versions of React do not support static getDerivedStateFromProps.
-// As a workaround, use cWM and cWRP to invoke the new static lifecycle.
-// Newer versions of React will ignore these methods if gDSFP exists.
 function componentWillMount() {
   // Call this.constructor.gDSFP to support sub-classes.
   var state = this.constructor.getDerivedStateFromProps(this.props, this.state);
@@ -29139,10 +29135,11 @@ function componentWillMount() {
 
 function componentWillReceiveProps(nextProps) {
   // Call this.constructor.gDSFP to support sub-classes.
-  var state = this.constructor.getDerivedStateFromProps(nextProps, this.state);
-  if (state !== null && state !== undefined) {
-    this.setState(state);
-  }
+  // Use the setState() updater to ensure state isn't stale in certain edge cases.
+  this.setState(function updater(prevState) {
+    var state = this.constructor.getDerivedStateFromProps(nextProps, prevState);
+    return state !== null && state !== undefined ? state : null;
+  });
 }
 
 function componentWillUpdate(nextProps, nextState) {
@@ -29175,80 +29172,73 @@ function polyfill(Component) {
     throw new Error('Can only polyfill class components');
   }
 
-  if (true) {
-    if (
-      typeof Component.getDerivedStateFromProps === 'function' ||
-      typeof prototype.getSnapshotBeforeUpdate === 'function'
-    ) {
-      // If new component APIs are defined, "unsafe" lifecycles won't be called.
-      // Error if any of these lifecycles are present, because they will not work.
-      var foundWillMountName = null;
-      var foundWillReceivePropsName = null;
-      var foundWillUpdateName = null;
-      if (typeof prototype.componentWillMount === 'function') {
-        foundWillMountName = 'componentWillMount';
-      } else if (typeof prototype.UNSAFE_componentWillMount === 'function') {
-        foundWillMountName = 'UNSAFE_componentWillMount';
-      }
-      if (typeof prototype.componentWillReceiveProps === 'function') {
-        foundWillReceivePropsName = 'componentWillReceiveProps';
-      } else if (
-        typeof prototype.UNSAFE_componentWillReceiveProps === 'function'
-      ) {
-        foundWillReceivePropsName = 'UNSAFE_componentWillReceiveProps';
-      }
-      if (typeof prototype.componentWillUpdate === 'function') {
-        foundWillUpdateName = 'componentWillUpdate';
-      } else if (typeof prototype.UNSAFE_componentWillUpdate === 'function') {
-        foundWillUpdateName = 'UNSAFE_componentWillUpdate';
-      }
-      if (
-        foundWillMountName !== null ||
-        foundWillReceivePropsName !== null ||
-        foundWillUpdateName !== null
-      ) {
-        var componentName = Component.displayName || Component.name;
-        var newApiName =
-          typeof Component.getDerivedStateFromProps === 'function'
-            ? 'getDerivedStateFromProps()'
-            : 'getSnapshotBeforeUpdate()';
-
-        console.error(
-          'Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n' +
-            componentName + ' uses ' + newApiName + ' but also contains the following legacy lifecycles:' +
-            (foundWillMountName !== null ? '\n  ' + foundWillMountName : '') +
-            (foundWillReceivePropsName !== null
-              ? '\n  ' + foundWillReceivePropsName
-              : '') +
-            (foundWillUpdateName !== null ? '\n  ' + foundWillUpdateName : '') +
-            '\n\nThe above lifecycles should be removed. Learn more about this warning here:\n' +
-            'https://fb.me/react-async-component-lifecycle-hooks'
-        );
-      }
-    }
+  if (
+    typeof Component.getDerivedStateFromProps !== 'function' &&
+    typeof prototype.getSnapshotBeforeUpdate !== 'function'
+  ) {
+    return Component;
   }
 
-  if (typeof Component.getDerivedStateFromProps === 'function') {
-    if (typeof prototype.componentWillMount === 'function') {
-      throw new Error(
-        'Cannot polyfill getDerivedStateFromProps() for components that define componentWillMount()'
-      );
-    } else if (typeof prototype.componentWillReceiveProps === 'function') {
-      throw new Error(
-        'Cannot polyfill getDerivedStateFromProps() for components that define componentWillReceiveProps()'
-      );
-    }
+  // If new component APIs are defined, "unsafe" lifecycles won't be called.
+  // Error if any of these lifecycles are present,
+  // Because they would work differently between older and newer (16.3+) versions of React.
+  var foundWillMountName = null;
+  var foundWillReceivePropsName = null;
+  var foundWillUpdateName = null;
+  if (typeof prototype.componentWillMount === 'function') {
+    foundWillMountName = 'componentWillMount';
+  } else if (typeof prototype.UNSAFE_componentWillMount === 'function') {
+    foundWillMountName = 'UNSAFE_componentWillMount';
+  }
+  if (typeof prototype.componentWillReceiveProps === 'function') {
+    foundWillReceivePropsName = 'componentWillReceiveProps';
+  } else if (typeof prototype.UNSAFE_componentWillReceiveProps === 'function') {
+    foundWillReceivePropsName = 'UNSAFE_componentWillReceiveProps';
+  }
+  if (typeof prototype.componentWillUpdate === 'function') {
+    foundWillUpdateName = 'componentWillUpdate';
+  } else if (typeof prototype.UNSAFE_componentWillUpdate === 'function') {
+    foundWillUpdateName = 'UNSAFE_componentWillUpdate';
+  }
+  if (
+    foundWillMountName !== null ||
+    foundWillReceivePropsName !== null ||
+    foundWillUpdateName !== null
+  ) {
+    var componentName = Component.displayName || Component.name;
+    var newApiName =
+      typeof Component.getDerivedStateFromProps === 'function'
+        ? 'getDerivedStateFromProps()'
+        : 'getSnapshotBeforeUpdate()';
 
+    throw Error(
+      'Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n' +
+        componentName +
+        ' uses ' +
+        newApiName +
+        ' but also contains the following legacy lifecycles:' +
+        (foundWillMountName !== null ? '\n  ' + foundWillMountName : '') +
+        (foundWillReceivePropsName !== null
+          ? '\n  ' + foundWillReceivePropsName
+          : '') +
+        (foundWillUpdateName !== null ? '\n  ' + foundWillUpdateName : '') +
+        '\n\nThe above lifecycles should be removed. Learn more about this warning here:\n' +
+        'https://fb.me/react-async-component-lifecycle-hooks'
+    );
+  }
+
+  // React <= 16.2 does not support static getDerivedStateFromProps.
+  // As a workaround, use cWM and cWRP to invoke the new static lifecycle.
+  // Newer versions of React will ignore these lifecycles if gDSFP exists.
+  if (typeof Component.getDerivedStateFromProps === 'function') {
     prototype.componentWillMount = componentWillMount;
     prototype.componentWillReceiveProps = componentWillReceiveProps;
   }
 
+  // React <= 16.2 does not support getSnapshotBeforeUpdate.
+  // As a workaround, use cWU to invoke the new lifecycle.
+  // Newer versions of React will ignore that lifecycle if gSBU exists.
   if (typeof prototype.getSnapshotBeforeUpdate === 'function') {
-    if (typeof prototype.componentWillUpdate === 'function') {
-      throw new Error(
-        'Cannot polyfill getSnapshotBeforeUpdate() for components that define componentWillUpdate()'
-      );
-    }
     if (typeof prototype.componentDidUpdate !== 'function') {
       throw new Error(
         'Cannot polyfill getSnapshotBeforeUpdate() for components that do not define componentDidUpdate() on the prototype'
