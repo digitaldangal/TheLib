@@ -80,6 +80,27 @@ function getContext() {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/core-js/map.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./node_modules/core-js/library/fn/map.js");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/core-js/number/is-nan.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./node_modules/core-js/library/fn/number/is-nan.js");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/core-js/number/min-safe-integer.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./node_modules/core-js/library/fn/number/min-safe-integer.js");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/extends.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -104,6 +125,45 @@ function _extends() {
 }
 
 module.exports = _extends;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var _Object$getOwnPropertySymbols = __webpack_require__("./node_modules/@babel/runtime/core-js/object/get-own-property-symbols.js");
+
+var _Object$keys = __webpack_require__("./node_modules/@babel/runtime/core-js/object/keys.js");
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+
+  var sourceKeys = _Object$keys(source);
+
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  if (_Object$getOwnPropertySymbols) {
+    var sourceSymbolKeys = _Object$getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutProperties;
 
 /***/ }),
 
@@ -5285,7 +5345,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _symbolObservable = __webpack_require__("./node_modules/symbol-observable/es/index.js");
+var _symbolObservable = __webpack_require__("./node_modules/jss/node_modules/symbol-observable/es/index.js");
 
 var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
 
@@ -5481,6 +5541,62 @@ function toCssValue(value) {
 
 /***/ }),
 
+/***/ "./node_modules/jss/node_modules/symbol-observable/es/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ponyfill_js__ = __webpack_require__("./node_modules/jss/node_modules/symbol-observable/es/ponyfill.js");
+/* global window */
+
+
+var root;
+
+if (typeof self !== 'undefined') {
+  root = self;
+} else if (typeof window !== 'undefined') {
+  root = window;
+} else if (typeof global !== 'undefined') {
+  root = global;
+} else if (true) {
+  root = module;
+} else {
+  root = Function('return this')();
+}
+
+var result = Object(__WEBPACK_IMPORTED_MODULE_0__ponyfill_js__["a" /* default */])(root);
+/* harmony default export */ __webpack_exports__["default"] = (result);
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
+/***/ "./node_modules/jss/node_modules/symbol-observable/es/ponyfill.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = symbolObservablePonyfill;
+function symbolObservablePonyfill(root) {
+	var result;
+	var Symbol = root.Symbol;
+
+	if (typeof Symbol === 'function') {
+		if (Symbol.observable) {
+			result = Symbol.observable;
+		} else {
+			result = Symbol('observable');
+			Symbol.observable = result;
+		}
+	} else {
+		result = '@@observable';
+	}
+
+	return result;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/material-ui/colors/blue.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5655,430 +5771,36 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/map.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/map.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/number/is-nan.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/number/is-nan.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/number/min-safe-integer.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/number/min-safe-integer.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/assign.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/object/assign.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/define-property.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/object/define-property.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/get-own-property-descriptor.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/object/get-own-property-descriptor.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/get-own-property-symbols.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/object/get-own-property-symbols.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/get-prototype-of.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/object/get-prototype-of.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/keys.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/object/keys.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/set-prototype-of.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/object/set-prototype-of.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/symbol.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/symbol/index.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/core-js/symbol/iterator.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/core-js/library/fn/symbol/iterator.js");
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/assertThisInitialized.js":
-/***/ (function(module, exports) {
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-module.exports = _assertThisInitialized;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/classCallCheck.js":
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/createClass.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Object$defineProperty = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/define-property.js");
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-
-    _Object$defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-module.exports = _createClass;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/defineProperty.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Object$defineProperty = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/define-property.js");
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    _Object$defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/extends.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Object$assign = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/assign.js");
-
-function _extends() {
-  module.exports = _extends = _Object$assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-module.exports = _extends;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/inherits.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/setPrototypeOf.js");
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  setPrototypeOf(subClass.prototype, superClass && superClass.prototype);
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-
-module.exports = _inherits;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js":
-/***/ (function(module, exports) {
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-}
-
-module.exports = _interopRequireDefault;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireWildcard.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Object$getOwnPropertyDescriptor = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/get-own-property-descriptor.js");
-
-var _Object$defineProperty = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/define-property.js");
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  } else {
-    var newObj = {};
-
-    if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          var desc = _Object$defineProperty && _Object$getOwnPropertyDescriptor ? _Object$getOwnPropertyDescriptor(obj, key) : {};
-
-          if (desc.get || desc.set) {
-            _Object$defineProperty(newObj, key, desc);
-          } else {
-            newObj[key] = obj[key];
-          }
-        }
-      }
-    }
-
-    newObj.default = obj;
-    return newObj;
-  }
-}
-
-module.exports = _interopRequireWildcard;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectSpread.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Object$getOwnPropertyDescriptor = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/get-own-property-descriptor.js");
-
-var _Object$getOwnPropertySymbols = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/get-own-property-symbols.js");
-
-var _Object$keys = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/keys.js");
-
-var defineProperty = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/defineProperty.js");
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    var ownKeys = _Object$keys(source);
-
-    if (typeof _Object$getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(_Object$getOwnPropertySymbols(source).filter(function (sym) {
-        return _Object$getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      defineProperty(target, key, source[key]);
-    });
-  }
-
-  return target;
-}
-
-module.exports = _objectSpread;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectWithoutProperties.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Object$getOwnPropertySymbols = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/get-own-property-symbols.js");
-
-var _Object$keys = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/keys.js");
-
-function _objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-
-  var sourceKeys = _Object$keys(source);
-
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  if (_Object$getOwnPropertySymbols) {
-    var sourceSymbolKeys = _Object$getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-
-module.exports = _objectWithoutProperties;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/typeof.js");
-
-var assertThisInitialized = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return assertThisInitialized(self);
-}
-
-module.exports = _possibleConstructorReturn;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/setPrototypeOf.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Object$setPrototypeOf = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/set-prototype-of.js");
-
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = _Object$setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-module.exports = _setPrototypeOf;
-
-/***/ }),
-
-/***/ "./node_modules/material-ui/node_modules/@babel/runtime/helpers/typeof.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Symbol$iterator = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/symbol/iterator.js");
-
-var _Symbol = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/symbol.js");
-
-function _typeof2(obj) { if (typeof _Symbol === "function" && typeof _Symbol$iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof _Symbol === "function" && obj.constructor === _Symbol && obj !== _Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
-
-function _typeof(obj) {
-  if (typeof _Symbol === "function" && _typeof2(_Symbol$iterator) === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return _typeof2(obj);
-    };
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof _Symbol === "function" && obj.constructor === _Symbol && obj !== _Symbol.prototype ? "symbol" : _typeof2(obj);
-    };
-  }
-
-  return _typeof(obj);
-}
-
-module.exports = _typeof;
-
-/***/ }),
-
 /***/ "./node_modules/material-ui/styles/MuiThemeProvider.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireWildcard = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+var _interopRequireWildcard = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
-var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectSpread.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _getPrototypeOf = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/get-prototype-of.js"));
+var _getPrototypeOf = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/object/get-prototype-of.js"));
 
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
-var _createClass2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/createClass.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/createClass.js"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
-var _inherits2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/inherits.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/inherits.js"));
 
-var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
 
 var _react = _interopRequireDefault(__webpack_require__("./node_modules/react/cjs/react.development.js"));
 
@@ -6260,7 +5982,7 @@ exports.default = _default;
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6527,7 +6249,7 @@ function lighten(color, coefficient) {
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6535,9 +6257,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = createBreakpoints;
 exports.keys = void 0;
 
-var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectSpread.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
 
 // Sorted ASC by size. That's important.
 // It can't be configured as it's used statically for propTypes.
@@ -6615,7 +6337,7 @@ function createBreakpoints(breakpoints) {
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6703,16 +6425,16 @@ function createGenerateClassName() {
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createMixins;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _objectSpread3 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectSpread.js"));
+var _objectSpread3 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 function createMixins(breakpoints, spacing, mixins) {
   var _toolbar;
@@ -6746,16 +6468,16 @@ function createMixins(breakpoints, spacing, mixins) {
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
-var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectSpread.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
 
 var _deepmerge = _interopRequireDefault(__webpack_require__("./node_modules/deepmerge/dist/es.js"));
 
@@ -6823,7 +6545,7 @@ exports.default = _default;
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6831,9 +6553,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = createPalette;
 exports.dark = exports.light = void 0;
 
-var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectSpread.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
 
 var _warning = _interopRequireDefault(__webpack_require__("./node_modules/warning/browser.js"));
 
@@ -7025,14 +6747,14 @@ function createPalette(palette) {
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = createTypography;
 
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
 
 var _deepmerge = _interopRequireDefault(__webpack_require__("./node_modules/deepmerge/dist/es.js"));
 
@@ -7166,16 +6888,16 @@ function createTypography(palette, typography) {
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
-var _keys = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/keys.js"));
+var _keys = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/object/keys.js"));
 
-var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectSpread.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _warning = _interopRequireDefault(__webpack_require__("./node_modules/warning/browser.js"));
 
@@ -7253,7 +6975,7 @@ exports.default = _default;
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -7315,7 +7037,7 @@ var _withTheme = _interopRequireDefault(__webpack_require__("./node_modules/mate
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -7396,14 +7118,14 @@ exports.default = _default;
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.CHANNEL = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _propTypes = _interopRequireDefault(__webpack_require__("./node_modules/next/node_modules/prop-types/index.js"));
 
@@ -7443,18 +7165,18 @@ exports.default = _default;
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.isNumber = exports.isString = exports.formatMs = exports.duration = exports.easing = void 0;
 
-var _keys = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/keys.js"));
+var _keys = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/object/keys.js"));
 
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
 
-var _isNan = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/number/is-nan.js"));
+var _isNan = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/number/is-nan.js"));
 
 var _warning = _interopRequireDefault(__webpack_require__("./node_modules/warning/browser.js"));
 
@@ -7560,38 +7282,38 @@ exports.default = _default;
 "use strict";
 
 
-var _interopRequireWildcard = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+var _interopRequireWildcard = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.sheetsManager = void 0;
 
-var _extends2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/extends.js"));
+var _extends2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/extends.js"));
 
-var _keys = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/keys.js"));
+var _keys = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/object/keys.js"));
 
-var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectSpread.js"));
+var _objectSpread2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
-var _getPrototypeOf = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/get-prototype-of.js"));
+var _getPrototypeOf = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/object/get-prototype-of.js"));
 
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
-var _createClass2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/createClass.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/createClass.js"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
-var _inherits2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/inherits.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/inherits.js"));
 
-var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
 
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
 
-var _map = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/map.js"));
+var _map = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/map.js"));
 
-var _minSafeInteger = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/number/min-safe-integer.js"));
+var _minSafeInteger = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/number/min-safe-integer.js"));
 
 var _react = _interopRequireDefault(__webpack_require__("./node_modules/react/cjs/react.development.js"));
 
@@ -7991,26 +7713,26 @@ exports.default = _default;
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
-var _extends2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/extends.js"));
+var _extends2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/extends.js"));
 
-var _getPrototypeOf = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/get-prototype-of.js"));
+var _getPrototypeOf = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/object/get-prototype-of.js"));
 
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
-var _createClass2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/createClass.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/createClass.js"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 
-var _inherits2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/inherits.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/inherits.js"));
 
-var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
 
 var _react = _interopRequireDefault(__webpack_require__("./node_modules/react/cjs/react.development.js"));
 
@@ -8147,7 +7869,7 @@ exports.default = _default;
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -8155,11 +7877,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = exactProp;
 exports.specialProperty = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _keys = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/core-js/object/keys.js"));
+var _keys = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/object/keys.js"));
 
-var _objectSpread3 = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/node_modules/@babel/runtime/helpers/objectSpread.js"));
+var _objectSpread3 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 // This module is based on https://github.com/airbnb/prop-types-exact repository.
 // However, in order to reduce the number of dependencies and to remove some extra safe checks
@@ -10206,62 +9928,6 @@ module.exports = __webpack_require__("./node_modules/styled-jsx/dist/server.js")
 
 /***/ }),
 
-/***/ "./node_modules/symbol-observable/es/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ponyfill_js__ = __webpack_require__("./node_modules/symbol-observable/es/ponyfill.js");
-/* global window */
-
-
-var root;
-
-if (typeof self !== 'undefined') {
-  root = self;
-} else if (typeof window !== 'undefined') {
-  root = window;
-} else if (typeof global !== 'undefined') {
-  root = global;
-} else if (true) {
-  root = module;
-} else {
-  root = Function('return this')();
-}
-
-var result = Object(__WEBPACK_IMPORTED_MODULE_0__ponyfill_js__["a" /* default */])(root);
-/* harmony default export */ __webpack_exports__["default"] = (result);
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/webpack/buildin/harmony-module.js")(module)))
-
-/***/ }),
-
-/***/ "./node_modules/symbol-observable/es/ponyfill.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = symbolObservablePonyfill;
-function symbolObservablePonyfill(root) {
-	var result;
-	var Symbol = root.Symbol;
-
-	if (typeof Symbol === 'function') {
-		if (Symbol.observable) {
-			result = Symbol.observable;
-		} else {
-			result = Symbol('observable');
-			Symbol.observable = result;
-		}
-	} else {
-		result = '@@observable';
-	}
-
-	return result;
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/theming/dist/esm/channel.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -10692,10 +10358,10 @@ module.exports = function(originalModule) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/cjs/react.development.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_document__ = __webpack_require__("./node_modules/next/document.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_document___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_document__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_jss_lib_JssProvider__ = __webpack_require__("./node_modules/react-jss/lib/JssProvider.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_jss_lib_JssProvider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_jss_lib_JssProvider__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_jss_lib_JssProvider__ = __webpack_require__("./node_modules/react-jss/lib/JssProvider.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_jss_lib_JssProvider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_jss_lib_JssProvider__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_document__ = __webpack_require__("./node_modules/next/document.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_document___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_next_document__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_context__ = __webpack_require__("./lib/context.js");
 var _jsxFileName = "/Users/me/Dev/devafter30/pages/_document.js";
 
@@ -10748,74 +10414,81 @@ function (_Document) {
         lang: "en",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 11
+          lineNumber: 10
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_document__["Head"], {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_document__["Head"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 12
+          lineNumber: 11
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
         charSet: "utf-8",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 13
+          lineNumber: 12
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
         name: "viewport",
         content: "width=device-width, initial-scale=1.0",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14
+          lineNumber: 13
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
         name: "google",
         content: "notranslate",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 15
+          lineNumber: 14
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
         name: "theme-color",
         content: "#1976D2",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 16
+          lineNumber: 15
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
         rel: "shortcut icon",
         href: "https://storage.googleapis.com/builderbook/favicon32.png",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 18
+          lineNumber: 17
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css?family=Muli:300,400:latin",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22
+          lineNumber: 21
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/icon?family=Material+Icons",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 25
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
         rel: "stylesheet",
         href: "https://storage.googleapis.com/builderbook/nprogress.min.css",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 26
+          lineNumber: 29
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
         rel: "stylesheet",
         href: "https://storage.googleapis.com/builderbook/vs.min.css",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30
+          lineNumber: 33
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("style", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 32
+          lineNumber: 35
         }
-      }, "\n              a, a:focus {\n                font-weight: 400;\n                color: #1565C0;\n                text-decoration: none;\n                outline: none\n              }\n              a:hover, button:hover {\n                opacity: 0.75;\n                cursor: pointer\n              }\n              blockquote {\n                padding: 0 1em;\n                color: #555;\n                border-left: 0.25em solid #dfe2e5;\n              }\n              pre {\n                display:block;\n                overflow-x:auto;\n                padding:0.5em;\n                background:#FFF;\n                color: #000;\n                border: 1px solid #ddd;\n              }\n              code {\n                font-size: 14px;\n                background: #FFF;\n                padding: 3px 5px;\n              }\n            ")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("body", {
+      }, "\n              a, a:focus {\n                font-weight: 400;\n                color: #1565C0;\n                text-decoration: none;\n                outline: none\n              }\n              a:hover, button:hover {\n                opacity: 0.75;\n                cursor: pointer\n              }\n              blockquote {\n                padding: 0 1em;\n                color: #555;\n                border-left: 0.25em solid #dfe2e5;\n              }\n              pre {\n                display:block;\n                overflow-x:auto;\n                padding:0.5em;\n                background:#FFF;\n                color: #000;\n                border: 1px solid #ddd;\n              }\n              code {\n                font-size: 14px;\n              }\n            ")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("body", {
         style: {
           font: '16px Muli',
           color: '#222',
@@ -10826,17 +10499,17 @@ function (_Document) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 65
+          lineNumber: 66
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_document__["Main"], {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 75
-        }
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_document__["NextScript"], {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_document__["Main"], {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 76
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_document__["NextScript"], {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 77
         }
       })));
     }
@@ -10850,14 +10523,14 @@ function (_Document) {
   }]);
 
   return MyDocument;
-}(__WEBPACK_IMPORTED_MODULE_1_next_document___default.a);
+}(__WEBPACK_IMPORTED_MODULE_2_next_document___default.a);
 
 MyDocument.getInitialProps = function (_ref) {
   var renderPage = _ref.renderPage;
   var pageContext = Object(__WEBPACK_IMPORTED_MODULE_3__lib_context__["a" /* default */])();
   var page = renderPage(function (Component) {
     return function (props) {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_jss_lib_JssProvider___default.a, {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_jss_lib_JssProvider___default.a, {
         registry: pageContext.sheetsRegistry,
         generateClassName: pageContext.generateClassName,
         __source: {
