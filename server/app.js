@@ -1,16 +1,14 @@
 import dotenv from 'dotenv';
 import express from 'express';
-import mongoose from 'mongoose';
+import next from 'next';
 // Creates session and save a cookie to the browser
 import session from 'express-session';
+import mongoose from 'mongoose';
 // Connects to my DB an saves the session
 import mongoSessionStore from 'connect-mongo';
-import next from 'next';
 import User from './models/User';
 
 dotenv.config();
-
-// const MongoStore = mongoSessionStore(session());
 
 // Passing NODE_ENV to next server. True when the env is not prod, false when env is in prod
 const dev = process.env.NODE_ENV !== 'production';
@@ -30,13 +28,19 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.use(session({
+  const MongoStore = mongoSessionStore(session);
+
+  const sess = {
     // cookie name
     name: 'devdadbook.sid',
     // key used to encode/decode the sessions cookie, could be anything.
     // a cookie does not contain session data but only the session ID (encoded with secret),
     // the server stores session data in memory.
     secret: 'HD2w.)q*VqRT4/#NK2M/,E^B)}FED5fWU!dKe[wk',
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 14 * 24 * 60 * 60, // save session for 14 days, just like the cookie
+    }),
     // forces the session to be saved to "store", even if the session was not modified.
     resave: false,
     // saves any new unmodified (uninitialized) session to "store".
@@ -52,7 +56,8 @@ app.prepare().then(() => {
       // In this case, the maxAge is 14 days.
       maxAge: 14 * 24 * 60 * 60 * 1000,
     },
-  }));
+  };
+  server.use(session(sess));
 
   server.get('/', async (req, res) => {
     const user = await User.findOne({ slug: 'devdad' });
