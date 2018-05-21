@@ -1,6 +1,10 @@
+import dotenv from 'dotenv';
 import express from 'express';
-import next from 'next';
 import mongoose from 'mongoose';
+import next from 'next';
+import User from './models/User';
+
+dotenv.config();
 
 // Passing NODE_ENV to next server. True when the env is not prod, false when env is in prod
 const dev = process.env.NODE_ENV !== 'production';
@@ -20,8 +24,8 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.get('/', (req, res) => {
-    const user = { email: 'varcodes1@gmail.com' };
+  server.get('/', async (req, res) => {
+    const user = await User.findOne({ slug: 'devdad' });
     app.render(req, res, '/', { user });
   });
 
