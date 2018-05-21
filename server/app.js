@@ -1,13 +1,17 @@
 import express from 'express';
-// next server
 import next from 'next';
-// import mongoose from 'mongoose';
-
-const port = process.env.PORT || 8000;
-const ROOT_URL = process.env.ROOT_URL || `http://localhost:${port}`;
+import mongoose from 'mongoose';
 
 // Passing NODE_ENV to next server. True when the env is not prod, false when env is in prod
 const dev = process.env.NODE_ENV !== 'production';
+// Mongo connection
+const MONGO_URL = process.env.MONGO_URL_TEST;
+mongoose.connect(MONGO_URL);
+
+// Port
+const port = process.env.PORT || 8000;
+const ROOT_URL = process.env.ROOT_URL || `http://localhost:${port}`;
+
 const app = next({ dev });
 // Handler function
 const handle = app.getRequestHandler();
