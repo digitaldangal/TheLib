@@ -10,14 +10,20 @@ module.exports =
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/cjs/react.development.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_link__ = __webpack_require__("./node_modules/next/link.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_link__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Toolbar__ = __webpack_require__("./node_modules/material-ui/Toolbar/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_Toolbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_Toolbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Grid__ = __webpack_require__("./node_modules/material-ui/Grid/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SharedStyles__ = __webpack_require__("./components/SharedStyles.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SharedStyles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__SharedStyles__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__("./node_modules/next/node_modules/prop-types/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_link__ = __webpack_require__("./node_modules/next/link.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_next_link__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Toolbar__ = __webpack_require__("./node_modules/material-ui/Toolbar/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Toolbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Toolbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Grid__ = __webpack_require__("./node_modules/material-ui/Grid/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Hidden__ = __webpack_require__("./node_modules/material-ui/Hidden/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Hidden___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Hidden__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Avatar__ = __webpack_require__("./node_modules/material-ui/Avatar/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Avatar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Avatar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__SharedStyles__ = __webpack_require__("./components/SharedStyles.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__SharedStyles___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__SharedStyles__);
 var _jsxFileName = "/Users/me/Dev/devafter30/components/Header.js";
 
 
@@ -32,43 +38,120 @@ var _jsxFileName = "/Users/me/Dev/devafter30/components/Header.js";
 
 
 
-var Header = function Header() {
+
+
+
+function Header(_ref) {
+  var user = _ref.user;
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 12
     }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Toolbar___default.a, {
-    style: __WEBPACK_IMPORTED_MODULE_4__SharedStyles__["styleToolbar"],
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Toolbar___default.a, {
+    style: __WEBPACK_IMPORTED_MODULE_7__SharedStyles__["styleToolbar"],
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 13
     }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, {
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, {
     container: true,
     direction: "row",
     justify: "space-around",
-    align: "center",
+    alignItems: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 14
     }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Grid___default.a, {
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, {
     item: true,
-    xs: 12,
+    sm: 10,
+    xs: 9,
+    style: {
+      textAlign: 'left'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    }
+  }, user ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Hidden___default.a, {
+    smDown: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_link___default.a, {
+    prefetch: true,
+    href: "/",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+    style: {
+      marginRight: '20px'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20
+    }
+  }, "Settings")))) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_link___default.a, {
+    prefetch: true,
+    href: "/",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 25
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Avatar___default.a, {
+    src: "https://storage.googleapis.com/builderbook/logo.svg",
+    alt: "Builder Book logo",
+    style: {
+      margin: '0px auto 0px 20px'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    }
+  }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Grid___default.a, {
+    item: true,
+    sm: 1,
+    xs: 3,
     style: {
       textAlign: 'right'
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 34
     }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_link___default.a, {
+  }, user ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+    style: {
+      whiteSpace: ' nowrap'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Avatar___default.a, {
+    src: user.avatarUrl,
+    alt: user.displayName,
+    style: {
+      margin: '0px auto 0px 20px'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    }
+  })) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_link___default.a, {
     prefetch: true,
     href: "/login",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 44
     }
   }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
     style: {
@@ -76,11 +159,20 @@ var Header = function Header() {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 45
     }
   }, "Log in"))))));
-};
+}
 
+Header.propTypes = {
+  user: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.shape({
+    avatarUrl: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+    displayName: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string
+  })
+};
+Header.defaultProps = {
+  user: null
+};
 var _default = Header;
 /* harmony default export */ __webpack_exports__["a"] = (_default);
 ;
@@ -6480,6 +6572,198 @@ function toNumber(value) {
 
 module.exports = toNumber;
 
+
+/***/ }),
+
+/***/ "./node_modules/material-ui/Avatar/Avatar.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+
+var _react = _interopRequireDefault(__webpack_require__("./node_modules/react/cjs/react.development.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__("./node_modules/next/node_modules/prop-types/index.js"));
+
+var _classnames = _interopRequireDefault(__webpack_require__("./node_modules/classnames/index.js"));
+
+var _withStyles = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/styles/withStyles.js"));
+
+var styles = function styles(theme) {
+  return {
+    root: {
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0,
+      width: theme.spacing.unit * 5,
+      height: theme.spacing.unit * 5,
+      fontFamily: theme.typography.fontFamily,
+      fontSize: theme.typography.pxToRem(20),
+      borderRadius: '50%',
+      overflow: 'hidden',
+      userSelect: 'none'
+    },
+    colorDefault: {
+      color: theme.palette.background.default,
+      backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
+    },
+    img: {
+      width: '100%',
+      height: '100%',
+      textAlign: 'center',
+      // Handle non-square image. The property isn't supported by IE11.
+      objectFit: 'cover'
+    }
+  };
+};
+
+exports.styles = styles;
+
+function Avatar(props) {
+  var alt = props.alt,
+      childrenProp = props.children,
+      childrenClassNameProp = props.childrenClassName,
+      classes = props.classes,
+      classNameProp = props.className,
+      Component = props.component,
+      imgProps = props.imgProps,
+      sizes = props.sizes,
+      src = props.src,
+      srcSet = props.srcSet,
+      other = (0, _objectWithoutProperties2.default)(props, ["alt", "children", "childrenClassName", "classes", "className", "component", "imgProps", "sizes", "src", "srcSet"]);
+  var className = (0, _classnames.default)(classes.root, (0, _defineProperty2.default)({}, classes.colorDefault, childrenProp && !src && !srcSet), classNameProp);
+  var children = null;
+
+  if (childrenProp) {
+    if (childrenClassNameProp && typeof childrenProp !== 'string' && _react.default.isValidElement(childrenProp)) {
+      var childrenClassName = (0, _classnames.default)(childrenClassNameProp, childrenProp.props.className);
+      children = _react.default.cloneElement(childrenProp, {
+        className: childrenClassName
+      });
+    } else {
+      children = childrenProp;
+    }
+  } else if (src || srcSet) {
+    children = _react.default.createElement("img", (0, _extends2.default)({
+      alt: alt,
+      src: src,
+      srcSet: srcSet,
+      sizes: sizes,
+      className: classes.img
+    }, imgProps));
+  }
+
+  return _react.default.createElement(Component, (0, _extends2.default)({
+    className: className
+  }, other), children);
+}
+
+Avatar.propTypes =  true ? {
+  /**
+   * Used in combination with `src` or `srcSet` to
+   * provide an alt attribute for the rendered `img` element.
+   */
+  alt: _propTypes.default.string,
+
+  /**
+   * Used to render icon or text elements inside the Avatar.
+   * `src` and `alt` props will not be used and no `img` will
+   * be rendered by default.
+   *
+   * This can be an element, or just a string.
+   */
+  children: _propTypes.default.node,
+
+  /**
+   * @ignore
+   * The className of the child element.
+   * Used by Chip and ListItemIcon to style the Avatar icon.
+   */
+  childrenClassName: _propTypes.default.string,
+
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: _propTypes.default.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: _propTypes.default.string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.func]),
+
+  /**
+   * Properties applied to the `img` element when the component
+   * is used to display an image.
+   */
+  imgProps: _propTypes.default.object,
+
+  /**
+   * The `sizes` attribute for the `img` element.
+   */
+  sizes: _propTypes.default.string,
+
+  /**
+   * The `src` attribute for the `img` element.
+   */
+  src: _propTypes.default.string,
+
+  /**
+   * The `srcSet` attribute for the `img` element.
+   */
+  srcSet: _propTypes.default.string
+} : {};
+Avatar.defaultProps = {
+  component: 'div'
+};
+
+var _default = (0, _withStyles.default)(styles, {
+  name: 'MuiAvatar'
+})(Avatar);
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/material-ui/Avatar/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function get() {
+    return _Avatar.default;
+  }
+});
+
+var _Avatar = _interopRequireDefault(__webpack_require__("./node_modules/material-ui/Avatar/Avatar.js"));
 
 /***/ }),
 
