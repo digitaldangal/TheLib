@@ -573,6 +573,203 @@ function getContext() {
 
 /***/ }),
 
+/***/ "./lib/withAuth.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator__ = __webpack_require__("./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("./node_modules/react/cjs/react.development.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__("./node_modules/next/node_modules/prop-types/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
+
+var _jsxFileName = "/Users/me/Dev/devafter30/lib/withAuth.js";
+
+(function () {
+  var enterModule = __webpack_require__("./node_modules/react-hot-loader/index.js").enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } } function _next(value) { step("next", value); } function _throw(err) { step("throw", err); } _next(); }); }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/* eslint-disable*/
+
+
+var globalUser = null;
+
+function withAuth(BaseComponent) {
+  var App =
+  /*#__PURE__*/
+  function (_React$Component) {
+    _inherits(App, _React$Component);
+
+    function App() {
+      _classCallCheck(this, App);
+
+      return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    }
+
+    _createClass(App, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        if (this.props.isFromServer) {
+          globalUser = this.props.user;
+        }
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(BaseComponent, _extends({}, this.props, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 51
+          }
+        }));
+      }
+    }, {
+      key: "__reactstandin__regenerateByEval",
+      value: function __reactstandin__regenerateByEval(key, code) {
+        this[key] = eval(code);
+      }
+    }], [{
+      key: "getInitialProps",
+      value: function () {
+        var _getInitialProps = _asyncToGenerator(
+        /*#__PURE__*/
+        __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.mark(function _callee(ctx) {
+          var isFromServer, user, props;
+          return __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  isFromServer = !!ctx.req; // ensure that context(ctx) is rendered on the server
+                  // if ctx.req isn;t defined in the server, it's undefined on the client and we get !!undefined = false
+                  // if ctx.req is rendered on the server and exist on the client, we get !!value = true
+                  // The first bang (!) converts an object to boolean and denies it. The second bang 
+                  // denies that boolean. Remember, undefined is falsy, meaning !undefined is true and !!undefined is false.
+
+                  user = ctx.req ? ctx.req.user && ctx.req.user.toObject() : globalUser;
+
+                  if (isFromServer && user) {
+                    // Converting Mongo's user._id to a string for the client side
+                    user._id = user._id.toString();
+                  }
+
+                  props = {
+                    user: user,
+                    isFromServer: isFromServer
+                  }; // Call child component's "getInitialProps", if it's defined
+
+                  if (!BaseComponent.getInitialProps) {
+                    _context.next = 14;
+                    break;
+                  }
+
+                  _context.t0 = Object;
+                  _context.t1 = props;
+                  _context.next = 9;
+                  return BaseComponent.getInitialProps(ctx);
+
+                case 9:
+                  _context.t2 = _context.sent;
+
+                  if (_context.t2) {
+                    _context.next = 12;
+                    break;
+                  }
+
+                  _context.t2 = {};
+
+                case 12:
+                  _context.t3 = _context.t2;
+
+                  _context.t0.assign.call(_context.t0, _context.t1, _context.t3);
+
+                case 14:
+                  return _context.abrupt("return", props);
+
+                case 15:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        }));
+
+        return function getInitialProps(_x) {
+          return _getInitialProps.apply(this, arguments);
+        };
+      }()
+    }]);
+
+    return App;
+  }(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
+
+  Object.defineProperty(App, "propTypes", {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: {
+      user: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.shape({
+        displayName: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string,
+        email: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string.isRequired
+      }),
+      isFromServer: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool.isRequired
+    }
+  });
+  Object.defineProperty(App, "defaultProps", {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: {
+      user: null
+    }
+  });
+  return App;
+}
+
+var _default = withAuth;
+/* harmony default export */ __webpack_exports__["a"] = (_default);
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__("./node_modules/react-hot-loader/index.js").default;
+
+  var leaveModule = __webpack_require__("./node_modules/react-hot-loader/index.js").leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(globalUser, "globalUser", "/Users/me/Dev/devafter30/lib/withAuth.js");
+  reactHotLoader.register(withAuth, "withAuth", "/Users/me/Dev/devafter30/lib/withAuth.js");
+  reactHotLoader.register(_default, "default", "/Users/me/Dev/devafter30/lib/withAuth.js");
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
 /***/ "./lib/withLayout.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -21051,18 +21248,15 @@ module.exports = function(originalModule) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator__ = __webpack_require__("./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("./node_modules/react/cjs/react.development.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__("./node_modules/next/node_modules/prop-types/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_head__ = __webpack_require__("./node_modules/next/head.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_head___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_next_head__);
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/cjs/react.development.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__("./node_modules/next/node_modules/prop-types/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_head__ = __webpack_require__("./node_modules/next/head.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_head___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_next_head__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_withAuth__ = __webpack_require__("./lib/withAuth.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__lib_withLayout__ = __webpack_require__("./lib/withLayout.js");
-
 var _jsxFileName = "/Users/me/Dev/devafter30/pages/index.js";
-
 
 (function () {
   var enterModule = __webpack_require__("./node_modules/react-hot-loader/index.js").enterModule;
@@ -21070,93 +21264,110 @@ var _jsxFileName = "/Users/me/Dev/devafter30/pages/index.js";
   enterModule && enterModule(module);
 })();
 
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } } function _next(value) { step("next", value); } function _throw(err) { step("throw", err); } _next(); }); }; }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/*  eslint-disable */
 
 
 
 
 
-var Index = function Index(_ref) {
-  var user = _ref.user;
-  return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
-    style: {
-      padding: '10px 45px'
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8
-    }
-  }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_next_head___default.a, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 9
-    }
-  }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("title", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 10
-    }
-  }, "Index page"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("meta", {
-    name: "description",
-    content: "This is SEO description of Index page",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    }
-  })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 13
-    }
-  }, "Content on Index page"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    }
-  }, "Email: ", user.email));
-}; // Static method that passes data to a page by populating the props of my component
 
-
-Index.getInitialProps =
+var Index =
 /*#__PURE__*/
-function () {
-  var _ref3 = _asyncToGenerator(
-  /*#__PURE__*/
-  __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.mark(function _callee(_ref2) {
-    var query;
-    return __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            query = _ref2.query;
-            return _context.abrupt("return", {
-              user: query.user
-            });
+function (_React$Component) {
+  _inherits(Index, _React$Component);
 
-          case 2:
-          case "end":
-            return _context.stop();
+  function Index() {
+    _classCallCheck(this, Index);
+
+    return _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).apply(this, arguments));
+  }
+
+  _createClass(Index, [{
+    key: "render",
+    value: function render() {
+      var user = this.props.user;
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        style: {
+          padding: '10px 45px'
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 24
         }
-      }
-    }, _callee, this);
-  }));
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_head___default.a, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 25
+        }
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("title", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 26
+        }
+      }, "Dashboard"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        name: "description",
+        content: "List of purchased books.",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27
+        }
+      })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 29
+        }
+      }, " Dashboard "), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 30
+        }
+      }, "Email: ", user.email));
+    }
+  }, {
+    key: "__reactstandin__regenerateByEval",
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
 
-  return function (_x) {
-    return _ref3.apply(this, arguments);
-  };
-}(); // Passing user prop to Index
+  return Index;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
+Object.defineProperty(Index, "propTypes", {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  value: {
+    user: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.shape({
+      displayName: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+      email: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired
+    })
+  }
+});
+Object.defineProperty(Index, "defaultProps", {
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  value: {
+    user: null
+  }
+});
 
-Index.propTypes = {
-  user: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.shape({
-    email: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string.isRequired
-  })
-};
-Index.defaultProps = {
-  user: null
-};
-
-var _default = Object(__WEBPACK_IMPORTED_MODULE_4__lib_withLayout__["a" /* default */])(Index);
+var _default = Object(__WEBPACK_IMPORTED_MODULE_3__lib_withAuth__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_4__lib_withLayout__["a" /* default */])(Index));
 
 /* harmony default export */ __webpack_exports__["default"] = (_default);
 ;
