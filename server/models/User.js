@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import mongoose from 'mongoose';
+
 import generateSlug from '../utils/slugify';
-// const Schema = mongoose.Schema;
+
 const { Schema } = mongoose;
 
 const mongoSchema = new Schema({
@@ -59,46 +60,51 @@ class UserClass {
     ];
   }
 
-  static signInOrSignUp({
+  static async signInOrSignUp({
     googleId, email, googleToken, displayName, avatarUrl,
   }) {
-    return this.findOne({ googleId }, UserClass.publicFields().join(' ')).then((user) => {
-      if (user) {
-        const modifier = {};
+    const user = await this.findOne({ googleId }).select(UserClass.publicFields().join(' '));
 
-        if (googleToken.accessToken) {
-          modifier.access_token = googleToken.accessToken;
-        }
+    if (user) {
+      const modifier = {};
 
-        if (googleToken.refreshToken) {
-          modifier.refresh_token = googleToken.refreshToken;
-        }
-
-        if (isEmpty(modifier)) {
-          return Promise.resolve(user);
-        }
-
-        return this.updateOne({ googleId }, { $set: modifier }).then(() => Promise.resolve(user));
+      if (googleToken.accessToken) {
+        modifier.access_token = googleToken.accessToken;
       }
 
-      const userCount = this.find().count();
+      if (googleToken.refreshToken) {
+        modifier.refresh_token = googleToken.refreshToken;
+      }
 
-      return generateSlug(displayName).then(slug =>
-        this.create({
-          createdAt: new Date(),
-          googleId,
-          email,
-          googleToken,
-          displayName,
-          avatarUrl,
-          slug,
-          isAdmin: userCount === 0,
-        }).then(newUser => Promise.resolve(pick(newUser, UserClass.publicFields()))));
+      if (_.isEmpty(modifier)) {
+        return user;
+      }
+
+      await this.updateOne({ googleId }, { $set: modifier });
+
+      return user;
+    }
+
+    const slug = await generateSlug(this, displayName);
+    const userCount = await this.find().count();
+
+    const newUser = await this.create({
+      createdAt: new Date(),
+      googleId,
+      email,
+      googleToken,
+      displayName,
+      avatarUrl,
+      slug,
+      isAdmin: userCount === 0,
     });
+
+    return _.pick(newUser, UserClass.publicFields());
   }
 }
 
 mongoSchema.loadClass(UserClass);
+
 const User = mongoose.model('User', mongoSchema);
 
 export default User;
@@ -107,5 +113,4 @@ export default User;
 // TODO:
 // integrate Google OAuth
 // integrate Github Auth
-// Switch from Promise.then to async/await
 
