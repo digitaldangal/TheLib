@@ -5,17 +5,18 @@ const slugify = text =>
     .toLowerCase()
     .trim()
   // Replace space with -
-    .replace()
+    .replace(/\s+/g, '-')
   // Replace & with 'and'
-    .replace()
+    .replace(/&/g, '-and-')
+
   // Remove all non-word chars
-    .replace()
+		.replace(/(?!\w)[\x00-\xC0]/g, '-') // eslint-disable-line
   // Replace multiple - with single -
-    .trim()
-    .replace()
+    .trim('-')
+		.replace(/\-\-+/g, '-') // eslint-disable-line
   // Remove - from start & end
-    .replace()
-    .replace();
+    .replace(/-$/, '')
+    .replace(/^-/, '');
 // RegExp ==============================
 
 async function createUniqueSlug(Model, slug, count) {
