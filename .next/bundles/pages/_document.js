@@ -10486,7 +10486,7 @@ function (_Document) {
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("style", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35
+          lineNumber: 37
         }
       }, "\n              a, a:focus {\n                font-weight: 400;\n                color: #1565C0;\n                text-decoration: none;\n                outline: none\n              }\n              a:hover, button:hover {\n                opacity: 0.75;\n                cursor: pointer\n              }\n              blockquote {\n                padding: 0 1em;\n                color: #555;\n                border-left: 0.25em solid #dfe2e5;\n              }\n              pre {\n                display:block;\n                overflow-x:auto;\n                padding:0.5em;\n                background:#FFF;\n                color: #000;\n                border: 1px solid #ddd;\n              }\n              code {\n                font-size: 14px;\n              }\n            ")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("body", {
         style: {
@@ -10499,17 +10499,17 @@ function (_Document) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 66
+          lineNumber: 68
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_document__["Main"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 76
+          lineNumber: 78
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_document__["NextScript"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 77
+          lineNumber: 79
         }
       })));
     }
@@ -10533,14 +10533,14 @@ MyDocument.getInitialProps = function (_ref) {
         generateClassName: pageContext.generateClassName,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 87
+          lineNumber: 89
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Component, _extends({
         pageContext: pageContext
       }, props, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 91
+          lineNumber: 93
         }
       })));
     };
@@ -10555,7 +10555,7 @@ MyDocument.getInitialProps = function (_ref) {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 99
+        lineNumber: 101
       }
     })
   });

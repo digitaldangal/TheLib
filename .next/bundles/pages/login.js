@@ -2,7 +2,7 @@ module.exports =
 
         __NEXT_REGISTER_PAGE('/login', function() {
           var comp = 
-      webpackJsonp([6],{
+      webpackJsonp([5],{
 
 /***/ "./components/Header.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -819,7 +819,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-
+ // Next.js event listeners
 
 __WEBPACK_IMPORTED_MODULE_4_next_router___default.a.onRouteChangeStart = function () {
   return __WEBPACK_IMPORTED_MODULE_5_nprogress___default.a.start();
@@ -866,27 +866,27 @@ function withLayout(BaseComponent) {
           sheetsManager: this.pageContext.sheetsManager,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 32
+            lineNumber: 33
           }
         }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_CssBaseline___default.a, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 36
+            lineNumber: 37
           }
         }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 37
+            lineNumber: 38
           }
         }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_Header__["a" /* default */], _extends({}, this.props, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 38
+            lineNumber: 39
           }
         })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(BaseComponent, _extends({}, this.props, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 39
+            lineNumber: 40
           }
         }))));
       }
@@ -22232,7 +22232,7 @@ var _default = Object(__WEBPACK_IMPORTED_MODULE_3__lib_withAuth__["a" /* default
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./pages/login.js");
@@ -22240,7 +22240,7 @@ module.exports = __webpack_require__("./pages/login.js");
 
 /***/ })
 
-},[5])
+},[4])
           return { page: comp.default }
         })
       ;
