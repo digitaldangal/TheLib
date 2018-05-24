@@ -59,10 +59,10 @@ class UserClass {
       'isGithubConnected',
     ];
   }
-
+  // signInOrSignUp() will wait for
   static async signInOrSignUp({
     googleId, email, googleToken, displayName, avatarUrl,
-  }) {
+  }) { // this.findOne() and if a user exist then it will wait for
     const user = await this.findOne({ googleId }).select(UserClass.publicFields().join(' '));
 
     if (user) {
@@ -79,15 +79,15 @@ class UserClass {
       if (_.isEmpty(modifier)) {
         return user;
       }
-
+      // this.updateOne() to update the users tokens, but if user !== exist, it will wait for
       await this.updateOne({ googleId }, { $set: modifier });
 
       return user;
     }
-
+    // generateSlug() and then will wait for
     const slug = await generateSlug(this, displayName);
     const userCount = await this.find().count();
-
+    // this.create()
     const newUser = await this.create({
       createdAt: new Date(),
       googleId,

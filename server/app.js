@@ -6,7 +6,7 @@ import session from 'express-session';
 import mongoose from 'mongoose';
 // Connects to my DB an saves the session
 import mongoSessionStore from 'connect-mongo';
-import User from './models/User';
+import auth from './google';
 
 dotenv.config();
 
@@ -36,6 +36,7 @@ app.prepare().then(() => {
     // key used to encode/decode the sessions cookie, could be anything.
     // a cookie does not contain session data but only the session ID (encoded with secret),
     // the server stores session data in memory.
+    // temp secret for local dev
     secret: 'HD2w.)q*VqRT4/#NK2M/,E^B)}FED5fWU!dKe[wk',
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
@@ -49,7 +50,7 @@ app.prepare().then(() => {
     cookie: {
       // This means that the cookie will not be available to client-side JS and will
       // only be sent with a req to the server.
-      // Simply put, the cookie is only available to
+      // The cookie is only available to the
       // server via HTTP and not accessible from client-side JS. This is a security measure.
       httpOnly: true,
       // The browser will remove the cookie after maxAge milliseconds.
@@ -58,13 +59,8 @@ app.prepare().then(() => {
     },
   };
   server.use(session(sess));
-
-  server.get('/', (req, res) => {
-    User.findOne({ slug: 'devdad' }).then((user) => {
-      req.user = user;
-      app.render(req, res, '/');
-    });
-  });
+  // must always be below my passport middleware to work properly
+  auth({ server, ROOT_URL });
 
   server.get('*', (req, res) => handle(req, res));
 
@@ -73,3 +69,7 @@ app.prepare().then(() => {
     console.log(`> Ready on ${ROOT_URL}`); // eslint-disable-line no-console
   });
 });
+
+// TODO:
+// Replace temp secret with prod secret, place in env before committing!
+// Replace temp Google ID with prod ID

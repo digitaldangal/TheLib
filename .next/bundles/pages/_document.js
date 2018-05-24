@@ -10391,6 +10391,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/* eslint-disable */
 
 
 
@@ -10414,79 +10415,87 @@ function (_Document) {
         lang: "en",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 10
+          lineNumber: 11
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_document__["Head"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 11
+          lineNumber: 12
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
         charSet: "utf-8",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 12
+          lineNumber: 13
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
         name: "viewport",
         content: "width=device-width, initial-scale=1.0",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 13
+          lineNumber: 14
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
         name: "google",
         content: "notranslate",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14
+          lineNumber: 15
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
         name: "theme-color",
         content: "#1976D2",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 15
+          lineNumber: 16
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
         rel: "shortcut icon",
         href: "https://storage.googleapis.com/builderbook/favicon32.png",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 17
+          lineNumber: 18
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css?family=Muli:300,400:latin",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21
+          lineNumber: 22
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/icon?family=Material+Icons",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 25
+          lineNumber: 26
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
         rel: "stylesheet",
         href: "https://storage.googleapis.com/builderbook/nprogress.min.css",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 27
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
         rel: "stylesheet",
         href: "https://storage.googleapis.com/builderbook/vs.min.css",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33
+          lineNumber: 31
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
+        rel: "stylesheet",
+        type: "text/css",
+        href: "/static/nprogress.css",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 34
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("style", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 35
         }
       }, "\n              a, a:focus {\n                font-weight: 400;\n                color: #1565C0;\n                text-decoration: none;\n                outline: none\n              }\n              a:hover, button:hover {\n                opacity: 0.75;\n                cursor: pointer\n              }\n              blockquote {\n                padding: 0 1em;\n                color: #555;\n                border-left: 0.25em solid #dfe2e5;\n              }\n              pre {\n                display:block;\n                overflow-x:auto;\n                padding:0.5em;\n                background:#FFF;\n                color: #000;\n                border: 1px solid #ddd;\n              }\n              code {\n                font-size: 14px;\n              }\n            ")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("body", {
         style: {
@@ -10499,17 +10508,17 @@ function (_Document) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 68
+          lineNumber: 66
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_document__["Main"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 78
+          lineNumber: 76
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_document__["NextScript"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 79
+          lineNumber: 77
         }
       })));
     }
@@ -10533,14 +10542,14 @@ MyDocument.getInitialProps = function (_ref) {
         generateClassName: pageContext.generateClassName,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 89
+          lineNumber: 87
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Component, _extends({
         pageContext: pageContext
       }, props, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 93
+          lineNumber: 91
         }
       })));
     };
@@ -10555,7 +10564,7 @@ MyDocument.getInitialProps = function (_ref) {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 101
+        lineNumber: 99
       }
     })
   });

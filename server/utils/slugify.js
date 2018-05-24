@@ -1,3 +1,6 @@
+// slugify() will fire string ops that will make slugs like this possible
+// example ->  name: Ric Flair === ric-flair
+// https://www.google.com/users/auth/ric-flair
 const slugify = text =>
   text
   // RegExp ===================================
@@ -28,9 +31,11 @@ async function createUniqueSlug(Model, slug, count) {
 
   return createUniqueSlug(Model, slug, count + 1);
 }
-
+// generateSlug() will create a unique slug for my models(it's agnostic) from the name arg
+// the filter arg is to ensure that chapters get the same slug as long as the chapters
+//  belong to 2 different books
 export default async function generateSlug(Model, name, filter = {}) {
-  const origSlug = slugify(name);
+  const origSlug = slugify(name); // creates a common slug
 
   const user = await Model.findOne(Object.assign({ slug: origSlug }, filter), 'id');
 
