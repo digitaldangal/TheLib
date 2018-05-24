@@ -583,6 +583,8 @@ function getContext() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__("./node_modules/next/node_modules/prop-types/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_router__ = __webpack_require__("./node_modules/next/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_next_router__);
 
 var _jsxFileName = "/Users/me/Dev/devafter30/lib/withAuth.js";
 
@@ -610,37 +612,78 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-/* eslint-disable*/
+/* eslint-disable */
 
+
+ // import moduleName from '';
 
 var globalUser = null;
 
-function withAuth(BaseComponent) {
-  var App =
+var _default = function _default(Page) {
+  var _class, _temp;
+
+  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref$loginRequired = _ref.loginRequired,
+      loginRequired = _ref$loginRequired === void 0 ? true : _ref$loginRequired,
+      _ref$logoutRequired = _ref.logoutRequired,
+      logoutRequired = _ref$logoutRequired === void 0 ? false : _ref$logoutRequired,
+      _ref$adminRequired = _ref.adminRequired,
+      adminRequired = _ref$adminRequired === void 0 ? false : _ref$adminRequired;
+
+  return _temp = _class =
   /*#__PURE__*/
   function (_React$Component) {
-    _inherits(App, _React$Component);
+    _inherits(BaseComponent, _React$Component);
 
-    function App() {
-      _classCallCheck(this, App);
+    function BaseComponent() {
+      _classCallCheck(this, BaseComponent);
 
-      return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+      return _possibleConstructorReturn(this, (BaseComponent.__proto__ || Object.getPrototypeOf(BaseComponent)).apply(this, arguments));
     }
 
-    _createClass(App, [{
+    _createClass(BaseComponent, [{
       key: "componentDidMount",
       value: function componentDidMount() {
+        var user = this.props.user;
+
         if (this.props.isFromServer) {
           globalUser = this.props.user;
+        }
+
+        if (loginRequired && !logoutRequired && !user) {
+          __WEBPACK_IMPORTED_MODULE_3_next_router___default.a.push('/login');
+          return;
+        }
+
+        if (adminRequired && (!user || !user.isAdmin)) {
+          __WEBPACK_IMPORTED_MODULE_3_next_router___default.a.push('/');
+        }
+
+        if (logoutRequired && user) {
+          __WEBPACK_IMPORTED_MODULE_3_next_router___default.a.push('/');
         }
       }
     }, {
       key: "render",
       value: function render() {
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(BaseComponent, _extends({}, this.props, {
+        var user = this.props.user;
+
+        if (loginRequired && !logoutRequired && !user) {
+          return null;
+        }
+
+        if (adminRequired && (!user || !user.isAdmin)) {
+          return null;
+        }
+
+        if (logoutRequired && user) {
+          return null;
+        }
+
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Page, _extends({}, this.props, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 51
+            lineNumber: 88
           }
         }));
       }
@@ -651,6 +694,7 @@ function withAuth(BaseComponent) {
       }
     }], [{
       key: "getInitialProps",
+      // getInitialProps() will pass the user prop to any page that my HOC(withAuth) wraps
       value: function () {
         var _getInitialProps = _asyncToGenerator(
         /*#__PURE__*/
@@ -661,10 +705,16 @@ function withAuth(BaseComponent) {
               switch (_context.prev = _context.next) {
                 case 0:
                   isFromServer = !!ctx.req; // ensure that context(ctx) is rendered on the server
-                  // if ctx.req isn;t defined in the server, it's undefined on the client and we get !!undefined = false
-                  // if ctx.req is rendered on the server and exist on the client, we get !!value = true
-                  // The first bang (!) converts an object to boolean and denies it. The second bang 
-                  // denies that boolean. Remember, undefined is falsy, meaning !undefined is true and !!undefined is false.
+
+                  /**
+                   *  if ctx.req isn't defined in the server, it's undefined on
+                  		the client and we get !!undefined = false
+                   * if ctx.req is rendered on the server and exist on the client, we get !!value = true
+                   * The first bang (!) converts an object to boolean and denies it. The second bang
+                    	denies that boolean.
+                   *  Remember, undefined is falsy, meaning !undefined is true
+                      and !!undefined is false.
+                   */
 
                   user = ctx.req ? ctx.req.user && ctx.req.user.toObject() : globalUser;
 
@@ -678,7 +728,7 @@ function withAuth(BaseComponent) {
                     isFromServer: isFromServer
                   }; // Call child component's "getInitialProps", if it's defined
 
-                  if (!BaseComponent.getInitialProps) {
+                  if (!Page.getInitialProps) {
                     _context.next = 14;
                     break;
                   }
@@ -686,7 +736,7 @@ function withAuth(BaseComponent) {
                   _context.t0 = Object;
                   _context.t1 = props;
                   _context.next = 9;
-                  return BaseComponent.getInitialProps(ctx);
+                  return Page.getInitialProps(ctx);
 
                 case 9:
                   _context.t2 = _context.sent;
@@ -720,33 +770,28 @@ function withAuth(BaseComponent) {
       }()
     }]);
 
-    return App;
-  }(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
-
-  Object.defineProperty(App, "propTypes", {
+    return BaseComponent;
+  }(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component), Object.defineProperty(_class, "propTypes", {
     configurable: true,
     enumerable: true,
     writable: true,
     value: {
       user: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.shape({
-        displayName: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string,
-        email: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string.isRequired
+        id: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string,
+        isAdmin: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool
       }),
       isFromServer: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool.isRequired
     }
-  });
-  Object.defineProperty(App, "defaultProps", {
+  }), Object.defineProperty(_class, "defaultProps", {
     configurable: true,
     enumerable: true,
     writable: true,
     value: {
       user: null
     }
-  });
-  return App;
-}
+  }), _temp;
+};
 
-var _default = withAuth;
 /* harmony default export */ __webpack_exports__["a"] = (_default);
 ;
 
@@ -760,7 +805,6 @@ var _default = withAuth;
   }
 
   reactHotLoader.register(globalUser, "globalUser", "/Users/me/Dev/devafter30/lib/withAuth.js");
-  reactHotLoader.register(withAuth, "withAuth", "/Users/me/Dev/devafter30/lib/withAuth.js");
   reactHotLoader.register(_default, "default", "/Users/me/Dev/devafter30/lib/withAuth.js");
   leaveModule(module);
 })();
@@ -22138,9 +22182,9 @@ var Login = function Login() {
       fileName: _jsxFileName,
       lineNumber: 12
     }
-  }, "Log in to Builder Book"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+  }, "Log in to The Lib"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     name: "description",
-    content: "Login page for builderbook.org",
+    content: "Login page for TheLib",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 13
@@ -22185,7 +22229,7 @@ var Login = function Login() {
       fileName: _jsxFileName,
       lineNumber: 20
     }
-  }), "Log in with Google"));
+  }), "\xA0\xA0\xA0 Log in with Google"));
 };
 
 var _default = Object(__WEBPACK_IMPORTED_MODULE_3__lib_withAuth__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_4__lib_withLayout__["a" /* default */])(Login), {

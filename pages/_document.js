@@ -29,9 +29,7 @@ class MyDocument extends Document {
             href="https://storage.googleapis.com/builderbook/nprogress.min.css"
           />
           <link rel="stylesheet" href="https://storage.googleapis.com/builderbook/vs.min.css" />
-          {/* TODO: */}
-          {/* Remove this link and the nprogress.css before deploying, the fallback cdn is right above this, hosted by Google Cloud. This is only for local dev */}
-          <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
+
           <style>
             {`
               a, a:focus {

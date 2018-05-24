@@ -9,8 +9,8 @@ import { styleLoginButton } from '../components/SharedStyles';
 const Login = () => (
   <div style={{ textAlign: 'center', margin: '0 20px' }}>
     <Head>
-      <title>Log in to Builder Book</title>
-      <meta name="description" content="Login page for builderbook.org" />
+      <title>Log in to The Lib</title>
+      <meta name="description" content="Login page for TheLib" />
     </Head>
     <br />
     <p style={{ margin: '45px auto', fontSize: '44px', fontWeight: '400' }}>Log in</p>
@@ -18,7 +18,7 @@ const Login = () => (
     <br />
     <Button variant="raised" style={styleLoginButton} href="/auth/google">
       <img src="https://storage.googleapis.com/nice-future-2156/G.svg" alt="Log in with Google" />
-Log in with Google
+      &nbsp;&nbsp;&nbsp; Log in with Google
     </Button>
   </div>
 );

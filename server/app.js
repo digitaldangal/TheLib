@@ -1,16 +1,16 @@
-import dotenv from 'dotenv';
 import express from 'express';
-import next from 'next';
 // Creates session and save a cookie to the browser
 import session from 'express-session';
-import mongoose from 'mongoose';
 // Connects to my DB an saves the session
 import mongoSessionStore from 'connect-mongo';
+import next from 'next';
+import mongoose from 'mongoose';
+
 import auth from './google';
 
-dotenv.config();
+require('dotenv').config();
 
-// Passing NODE_ENV to next server. True when the env is not prod, false when env is in prod
+// Passing NODE_ENV to Next.js server. True when the env is not prod, false when env is in prod
 const dev = process.env.NODE_ENV !== 'production';
 // Mongo connection
 const MONGO_URL = process.env.MONGO_URL_TEST;
@@ -24,15 +24,14 @@ const app = next({ dev });
 // Handler function
 const handle = app.getRequestHandler();
 
-// GET Request function - next docs
+// NextJS GET to prep server
 app.prepare().then(() => {
   const server = express();
-
+  // MongoDB session store config
   const MongoStore = mongoSessionStore(session);
-
   const sess = {
     // cookie name
-    name: 'devdadbook.sid',
+    name: 'builderbook.sid',
     // key used to encode/decode the sessions cookie, could be anything.
     // a cookie does not contain session data but only the session ID (encoded with secret),
     // the server stores session data in memory.
@@ -60,6 +59,7 @@ app.prepare().then(() => {
   };
   server.use(session(sess));
   // must always be below my passport middleware to work properly
+  // http://www.passportjs.org/docs/configure/
   auth({ server, ROOT_URL });
 
   server.get('*', (req, res) => handle(req, res));
@@ -69,7 +69,3 @@ app.prepare().then(() => {
     console.log(`> Ready on ${ROOT_URL}`); // eslint-disable-line no-console
   });
 });
-
-// TODO:
-// Replace temp secret with prod secret, place in env before committing!
-// Replace temp Google ID with prod ID

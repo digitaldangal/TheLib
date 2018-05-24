@@ -3,7 +3,7 @@ import { OAuth2Strategy as Strategy } from 'passport-google-oauth';
 
 import User from './models/User';
 
-function auth({ ROOT_URL, server }) {
+export default function auth({ ROOT_URL, server }) {
   // Wait for signInOrSignUp() to return a user
   const verify = async (accessToken, refreshToken, profile, verified) => {
     let email;
@@ -12,9 +12,10 @@ function auth({ ROOT_URL, server }) {
     if (profile.emails) {
       email = profile.emails[0].value; // Grab 1st email from emails array
     }
-
-    if (profile.image && profile.image.url) {
-      avatarUrl = profile.image.url.replace('sz=50', 'sz=128'); // replace profile img sz 50 for 128
+    // ========================================
+    if (profile.photos && profile.photos.length > 0) {
+      // replace profile img sz 50 for 128
+      avatarUrl = profile.photos[0].value.replace('sz=50', 'sz=128');
     }
 
     try {
@@ -67,17 +68,14 @@ function auth({ ROOT_URL, server }) {
   server.use(passport.session());
 
   // Express routes
-  server.get(
-    'auth/google',
-    passport.authenticate('google', {
-      scope: ['profile', 'email'],
-      prompt: 'select_account',
-    }),
-  );
+  server.get('/auth/google', passport.authenticate('google', {
+    scope: ['profile', 'email'],
+    prompt: 'select_account',
+  }));
 
   server.get(
     '/oauth2callback',
-    passport.authenticate('google', {
+    passport.authenticate('google', { 
       failureRedirect: '/login',
     }),
     (req, res) => {
@@ -89,6 +87,4 @@ function auth({ ROOT_URL, server }) {
     req.logout();
     res.redirect('/login');
   });
-} // closing auth()
-
-export default auth;
+} // auth closing brace

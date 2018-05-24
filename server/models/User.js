@@ -1,5 +1,5 @@
-import _ from 'lodash';
 import mongoose from 'mongoose';
+import _ from 'lodash';
 
 import generateSlug from '../utils/slugify';
 
@@ -49,15 +49,7 @@ const mongoSchema = new Schema({
 
 class UserClass {
   static publicFields() {
-    return [
-      'id',
-      'displayName',
-      'email',
-      'avatarUrl',
-      'slug',
-      'isAdmin',
-      'isGithubConnected',
-    ];
+    return ['id', 'displayName', 'email', 'avatarUrl', 'slug', 'isAdmin', 'isGithubConnected'];
   }
   // signInOrSignUp() will wait for
   static async signInOrSignUp({
