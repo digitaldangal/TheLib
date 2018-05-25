@@ -13,9 +13,9 @@ export default function auth({ ROOT_URL, server }) {
       email = profile.emails[0].value; // Grab 1st email from emails array
     }
     // ========================================
-    if (profile.photos && profile.photos.length > 0) {
+    if (profile.image && profile.image.length > 0) {
       // replace profile img sz 50 for 128
-      avatarUrl = profile.photos[0].value.replace('sz=50', 'sz=128');
+      avatarUrl = profile.image[0].value.replace('sz=50', 'sz=128');
     }
 
     try {
@@ -75,7 +75,7 @@ export default function auth({ ROOT_URL, server }) {
 
   server.get(
     '/oauth2callback',
-    passport.authenticate('google', { 
+    passport.authenticate('google', {
       failureRedirect: '/login',
     }),
     (req, res) => {

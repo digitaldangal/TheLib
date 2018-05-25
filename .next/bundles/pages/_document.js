@@ -10516,7 +10516,9 @@ function (_Document) {
     }
   }, {
     key: "__reactstandin__regenerateByEval",
+    // @ts-ignore
     value: function __reactstandin__regenerateByEval(key, code) {
+      // @ts-ignore
       this[key] = eval(code);
     }
   }]);

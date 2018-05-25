@@ -31,7 +31,7 @@ app.prepare().then(() => {
   const MongoStore = mongoSessionStore(session);
   const sess = {
     // cookie name
-    name: 'builderbook.sid',
+    name: 'devdadbook.sid',
     // key used to encode/decode the sessions cookie, could be anything.
     // a cookie does not contain session data but only the session ID (encoded with secret),
     // the server stores session data in memory.
