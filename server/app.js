@@ -5,6 +5,7 @@ import session from 'express-session';
 import mongoSessionStore from 'connect-mongo';
 import next from 'next';
 import mongoose from 'mongoose';
+import logger from './logs';
 
 import auth from './google';
 
@@ -66,6 +67,6 @@ app.prepare().then(() => {
 
   server.listen(port, (err) => {
     if (err) throw err;
-    console.log(`> Ready on ${ROOT_URL}`); // eslint-disable-line no-console
+    logger.info(`> Ready on ${ROOT_URL}`); // eslint-disable-line no-console
   });
 });
