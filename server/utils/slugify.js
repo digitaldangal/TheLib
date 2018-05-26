@@ -3,30 +3,27 @@
 // https://www.google.com/users/auth/ric-flair
 const slugify = text =>
   text
-  // RegExp ===================================
     .toString()
     .toLowerCase()
     .trim()
-  // Replace space with -
+    // Replace spaces with -
     .replace(/\s+/g, '-')
-  // Replace & with 'and'
+    // Replace & with 'and'
     .replace(/&/g, '-and-')
-
-  // Remove all non-word chars
-		.replace(/(?!\w)[\x00-\xC0]/g, '-') // eslint-disable-line
-  // Replace multiple - with single -
+    // Remove all non-word chars
+    .replace(/(?!\w)[\x00-\xC0]/g, '-') // eslint-disable-line
+    // Replace multiple - with single -
     .trim('-')
-		.replace(/\-\-+/g, '-') // eslint-disable-line
-  // Remove - from start & end
+    .replace(/\-\-+/g, '-') // eslint-disable-line
+    // Remove - from start & end
     .replace(/-$/, '')
     .replace(/^-/, '');
-// RegExp ==============================
 
 async function createUniqueSlug(Model, slug, count) {
-  const user = await Model.findOne({ slug: `${slug}-${slug - count}` }, 'id');
+  const user = await Model.findOne({ slug: `${slug}-${count}` }, 'id');
 
   if (!user) {
-    return `${slug} - ${count}`;
+    return `${slug}-${count}`;
   }
 
   return createUniqueSlug(Model, slug, count + 1);

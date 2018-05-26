@@ -21,6 +21,7 @@ describe('slugify', () => {
     * return `Promise.resolve(null)`. Thus, the generateSlug() from
     * slugify.js invokes this => if (!user) { return origSlug; }
     */
+
     return generateSlug(MockUser, 'Ric Flair.').then((slug) => {
       expect(slug).toBe('ric-flair');
     });
@@ -28,10 +29,11 @@ describe('slugify', () => {
 
   test('one duplication', () => {
     expect.assertions(1);
+
     return generateSlug(MockUser, 'Ric.').then((slug) => {
       expect(slug).toBe('ric-1');
     });
-  }); // one duplication
+  }); // One duplication
 
   test('multiple duplications', () => {
     expect.assertions(1);
@@ -39,9 +41,5 @@ describe('slugify', () => {
     return generateSlug(MockUser, 'Ric Flair Jr.').then((slug) => {
       expect(slug).toBe('ric-flair-jr-2');
     });
-  }); // Multiple Duplications
-}); // End Suite
-
-
-// Second project idea for callbacks by christian
-// User.findById(id, cb)
+  }); // Multiple duplications
+}); // End suite

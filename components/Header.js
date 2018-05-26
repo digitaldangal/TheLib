@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+
 import Toolbar from 'material-ui/Toolbar';
 import Grid from 'material-ui/Grid';
 import Hidden from 'material-ui/Hidden';
+
+
 import Avatar from 'material-ui/Avatar';
 
 import MenuDrop from './MenuDrop';
