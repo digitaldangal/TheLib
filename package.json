@@ -6,7 +6,11 @@
     "build": "next build",
     "start": "next start",
     "dev": "nodemon server/app.js --watch server --exec babel-node --presets=@babel/preset-env",
-    "lint": "eslint components pages lib server"
+    "lint": "eslint components pages lib server",
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "coverageDirectory": "./.coverage"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-beta.46",
@@ -23,7 +27,7 @@
     "lodash": "^4.17.10",
     "material-ui": "^1.0.0-beta.46",
     "mongoose": "^5.0.17",
-    "next": "^6.0.3",
+    "next": "^6.0.0",
     "nprogress": "^0.2.0",
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
@@ -41,6 +45,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "jest": "^22.4.3",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.4"
   }
 }
