@@ -1,3 +1,4 @@
+/* eslint-disable */
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Toolbar, Grid, Avatar, Hidden } from 'material-ui';
@@ -30,13 +31,13 @@ function Header({ user }) {
                 </Hidden>
               </div>
           ) : (
-  <Link prefetch href="/">
-    <Avatar
-      src="https://storage.googleapis.com/builderbook/logo.svg"
-      alt="Builder Book logo"
-      style={{ margin: '0px auto 0px 20px' }}
-    />
-  </Link>
+            <Link prefetch href="/">
+              <Avatar
+                src="https://storage.googleapis.com/builderbook/logo.svg"
+                alt="Builder Book logo"
+                style={{ margin: '0px auto 0px 20px' }}
+              />
+            </Link>
 						)}
           </Grid>
           <Grid item sm={1} xs={3} style={{ textAlign: 'right' }}>

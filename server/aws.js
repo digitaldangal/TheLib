@@ -12,12 +12,6 @@ export default function sendEmail(options) {
   // SES Init w/ latest version
   const ses = new aws.SES({ apiVersion: 'latest' });
 
-  aws.config.update({
-    region: 'us-east-1',
-    accessKeyId: process.env.Amazon_accessKeyId,
-    secretAccessKey: process.env.Amazon_secretAccessKey,
-  });
-
   // Types of params for sendEmail()
   // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SES.html#sendEmail-property
   return new Promise((resolve, reject) => {

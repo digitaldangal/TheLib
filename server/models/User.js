@@ -3,12 +3,10 @@ import _ from 'lodash';
 
 import generateSlug from '../utils/slugify';
 import sendEmail from '../aws';
-import getEmailTemplate from './EmailTemplate';
+import getEmailTemplate from '../models/EmailTemplate';
 import logger from '../logs';
 
-const { Schema } = mongoose;
-
-const mongoSchema = new Schema({
+const userSchema = new mongoose.Schema({
   googleId: {
     type: String,
     required: true,
@@ -64,17 +62,10 @@ class UserClass {
     if (user) {
       const modifier = {};
 
-      if (googleToken.accessToken) {
-        modifier.access_token = googleToken.accessToken;
-      }
+      modifier.access_token = googleToken.accessToken || null;
+      modifier.refresh_token = googleToken.refreshToken || null;
 
-      if (googleToken.refreshToken) {
-        modifier.refresh_token = googleToken.refreshToken;
-      }
-
-      if (_.isEmpty(modifier)) {
-        return user;
-      }
+      if (_.isEmpty(modifier)) return user;
       // this.updateOne() to update the users tokens, but if user !== exist, it will wait for
       await this.updateOne({ googleId }, { $set: modifier });
 
@@ -95,7 +86,6 @@ class UserClass {
       isAdmin: userCount === 0,
     });
 
-    // ===================
     // Make `signInOrSignUp()` wait for `getEmailTemplate()` to return the template
     const template = await getEmailTemplate('welcome', {
       // pass userName to getEmailTemplate() so that {{userName}} get an actual val
@@ -106,7 +96,7 @@ class UserClass {
       // wait(await) for the `sendEmail()` to send an email. Pass the template
       // from `getEmailTemplate()` to `sendEmail()`
       await sendEmail({
-        from: `Kelly from Builder Book <${process.env.EMAIL_SUPPORT_FROM_ADDRESS}>`,
+        from: `Ruben from The Lib <${process.env.EMAIL_SUPPORT_FROM_ADDRESS}>`,
         to: [email], // email is a string but being passed as an array due to AWS SES API Guidelines
         subject: template.subject,
         body: template.message,
@@ -117,15 +107,13 @@ class UserClass {
       logger.error('Email sending error:', err);
     }
 
-    // ===================
-
     return _.pick(newUser, UserClass.publicFields());
   }
 }
 
-mongoSchema.loadClass(UserClass);
+userSchema.loadClass(UserClass);
 
-const User = mongoose.model('User', mongoSchema);
+const User = mongoose.model('User', userSchema);
 
 export default User;
 
