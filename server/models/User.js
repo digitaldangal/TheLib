@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 import _ from 'lodash';
 
 import generateSlug from '../utils/slugify';
+import sendEmail from '../aws';
+import getEmailTemplate from './EmailTemplate';
+import logger from '../logs';
 
 const { Schema } = mongoose;
 
@@ -91,6 +94,30 @@ class UserClass {
       slug,
       isAdmin: userCount === 0,
     });
+
+    // ===================
+    // Make `signInOrSignUp()` wait for `getEmailTemplate()` to return the template
+    const template = await getEmailTemplate('welcome', {
+      // pass userName to getEmailTemplate() so that {{userName}} get an actual val
+      userName: displayName,
+    });
+
+    try {
+      // wait(await) for the `sendEmail()` to send an email. Pass the template
+      // from `getEmailTemplate()` to `sendEmail()`
+      await sendEmail({
+        from: `Kelly from Builder Book <${process.env.EMAIL_SUPPORT_FROM_ADDRESS}>`,
+        to: [email], // email is a string but being passed as an array due to AWS SES API Guidelines
+        subject: template.subject,
+        body: template.message,
+      });
+    } catch (err) {
+      // Output errors from `sendEmail()`, the rest of the errors that belong
+      // to `signInOrSignUp()`are being caught @ server/google.js
+      logger.error('Email sending error:', err);
+    }
+
+    // ===================
 
     return _.pick(newUser, UserClass.publicFields());
   }
