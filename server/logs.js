@@ -38,7 +38,7 @@ export default logger;
  * }
  */
 
- /**
+/**
   * Replace console.log() for the following actions:
   * For debugging, use logger.debug()
   * For errors, use logger.error()

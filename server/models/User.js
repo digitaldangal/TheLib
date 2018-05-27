@@ -54,7 +54,8 @@ class UserClass {
   // signInOrSignUp() will wait for
   static async signInOrSignUp({
     googleId, email, googleToken, displayName, avatarUrl,
-  }) { // this.findOne() and if a user exist then it will wait for
+  }) {
+    // this.findOne() and if a user exist then it will wait for
     const user = await this.findOne({ googleId }).select(UserClass.publicFields().join(' '));
 
     if (user) {
@@ -101,8 +102,5 @@ const User = mongoose.model('User', mongoSchema);
 
 export default User;
 
-
 // TODO:
-// integrate Google OAuth
 // integrate Github Auth
-

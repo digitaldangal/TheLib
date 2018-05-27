@@ -1,16 +1,8 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-
-import Toolbar from 'material-ui/Toolbar';
-import Grid from 'material-ui/Grid';
-import Hidden from 'material-ui/Hidden';
-
-
-import Avatar from 'material-ui/Avatar';
-
-import MenuDrop from './MenuDrop';
-
+import { Toolbar, Grid, Avatar, Hidden } from 'material-ui';
 import { styleToolbar } from './SharedStyles';
+import MenuDrop from './MenuDrop';
 
 const optionsMenu = [
   {
@@ -37,28 +29,28 @@ function Header({ user }) {
                   </Link>
                 </Hidden>
               </div>
-            ) : (
-              <Link prefetch href="/">
-                <Avatar
-                  src="https://storage.googleapis.com/builderbook/logo.svg"
-                  alt="Builder Book logo"
-                  style={{ margin: '0px auto 0px 20px' }}
-                />
-              </Link>
-            )}
+          ) : (
+  <Link prefetch href="/">
+    <Avatar
+      src="https://storage.googleapis.com/builderbook/logo.svg"
+      alt="Builder Book logo"
+      style={{ margin: '0px auto 0px 20px' }}
+    />
+  </Link>
+						)}
           </Grid>
           <Grid item sm={1} xs={3} style={{ textAlign: 'right' }}>
             {user ? (
               <div style={{ whiteSpace: ' nowrap' }}>
                 {user.avatarUrl ? (
                   <MenuDrop options={optionsMenu} src={user.avatarUrl} alt={user.displayName} />
-                ) : null}
+								) : null}
               </div>
-            ) : (
-              <Link prefetch href="/login">
-                <a style={{ margin: '0px 20px 0px auto' }}>Log in</a>
-              </Link>
-            )}
+						) : (
+  <Link prefetch href="/login" as="/login">
+    <a style={{ margin: '0px 20px 0px auto' }}>Log in</a>
+  </Link>
+						)}
           </Grid>
         </Grid>
       </Toolbar>

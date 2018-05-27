@@ -1,20 +1,25 @@
+/* eslint no-console: 0 */
+import dotenv from 'dotenv';
 import express from 'express';
 // Creates session and save a cookie to the browser
 import session from 'express-session';
-// Connects to my DB an saves the session
-import mongoSessionStore from 'connect-mongo';
 import next from 'next';
 import mongoose from 'mongoose';
-import logger from './logs';
+// Connects to my DB an saves the session
+import mongoSessionStore from 'connect-mongo';
 
 import auth from './google';
+import logger from './logs';
 
-require('dotenv').config();
+
+// Configure .env
+dotenv.config();
 
 // Passing NODE_ENV to Next.js server. True when the env is not prod, false when env is in prod
 const dev = process.env.NODE_ENV !== 'production';
 // Mongo connection
 const MONGO_URL = process.env.MONGO_URL_TEST;
+// DB
 mongoose.connect(MONGO_URL);
 
 // Port
