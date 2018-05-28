@@ -79,7 +79,7 @@ export default function auth({ ROOT_URL, server }) {
       failureRedirect: '/login',
     }),
     (req, res) => {
-      res.redirect('/');
+      res.redirect('/admin');
     },
   );
 

@@ -3,14 +3,15 @@ import dotenv from 'dotenv';
 import express from 'express';
 // Creates session and save a cookie to the browser
 import session from 'express-session';
-import next from 'next';
-import mongoose from 'mongoose';
 // Connects to my DB an saves the session
 import mongoSessionStore from 'connect-mongo';
+import next from 'next';
+import mongoose from 'mongoose';
 
 import auth from './google';
+import api from './api';
+
 import logger from './logs';
-import Chapter from './models/Chapter';
 
 // Configure .env
 dotenv.config();
@@ -26,6 +27,10 @@ mongoose.connect(MONGO_URL);
 const port = process.env.PORT || 8000;
 const ROOT_URL = process.env.ROOT_URL || `http://localhost:${port}`;
 
+const URL_MAP = {
+  '/login': '/public/login',
+};
+
 const app = next({ dev });
 // Handler function
 const handle = app.getRequestHandler();
@@ -37,7 +42,7 @@ app.prepare().then(() => {
   const MongoStore = mongoSessionStore(session);
   const sess = {
     // cookie name
-    name: 'ironhack.sid',
+    name: 'builderbook.sid',
     /**
       key used to encode/decode the sessions cookie, could be anything.
       a cookie does not contain session data but only the session ID (encoded with secret),
@@ -67,11 +72,20 @@ app.prepare().then(() => {
   // must always be below my passport middleware to work properly
   // http://www.passportjs.org/docs/configure/
   auth({ server, ROOT_URL });
+  api(server);
 
-  server.get('*', (req, res) => handle(req, res));
+  server.get('/books/:bookSlug/:chapterSlug', (req, res) => {
+    const { bookSlug, chapterSlug } = req.params;
+    app.render(req, res, '/public/read-chapter', { bookSlug, chapterSlug });
+  });
 
-  Chapter.create({ bookId: '59f3c240a1ab6e39c4b4d10d' }).catch((err) => {
-    logger.info(err);
+  server.get('*', (req, res) => {
+    const url = URL_MAP[req.path];
+    if (url) {
+      app.render(req, res, url);
+    } else {
+      handle(req, res);
+    }
   });
 
   server.listen(port, (err) => {

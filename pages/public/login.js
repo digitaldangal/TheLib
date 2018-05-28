@@ -2,9 +2,9 @@
 import Head from 'next/head';
 import Button from 'material-ui/Button';
 
-import withAuth from '../lib/withAuth';
-import withLayout from '../lib/withLayout';
-import { styleLoginButton } from '../components/SharedStyles';
+import withAuth from '../../lib/withAuth';
+import withLayout from '../../lib/withLayout';
+import { styleLoginButton } from '../../components/SharedStyles';
 
 const Login = () => (
   <div style={{ textAlign: 'center', margin: '0 20px' }}>
@@ -18,7 +18,7 @@ const Login = () => (
     <br />
     <Button variant="raised" style={styleLoginButton} href="/auth/google">
       <img src="https://storage.googleapis.com/nice-future-2156/G.svg" alt="Log in with Google" />
-      &nbsp;&nbsp;&nbsp; Log in with Google
+&nbsp;&nbsp;&nbsp; Log in with Google
     </Button>
   </div>
 );
