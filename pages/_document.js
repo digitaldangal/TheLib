@@ -2,13 +2,27 @@
 import React from 'react';
 import JssProvider from 'react-jss/lib/JssProvider';
 import Document, { Head, Main, NextScript } from 'next/document';
+import htmlescape from 'htmlescape';
 
 import getContext from '../lib/context';
+
+// Stripe Key now points to process.env.StripePublishableKey
+const { StripePublishableKey } = process.env;
+// console.log(StripePublishableKey);
+// creates a env.StripePublishKey param inside the env object
+const env = { StripePublishableKey };
+// console.log(env);
+// const env = { StripePublishableKey: StripePublishableKey };
 
 class MyDocument extends Document {
   render() {
     return (
-      <html lang="en">
+      <html
+        lang="en"
+        style={{
+					height: '100%',
+				}}
+      >
         <Head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +31,7 @@ class MyDocument extends Document {
 
           <link
             rel="shortcut icon"
-            href="https://storage.googleapis.com/builderbook/favicon32.png"
+            href="https://storage.googleapis.com/thelib/princess.png"
           />
           <link
             rel="stylesheet"
@@ -54,9 +68,11 @@ class MyDocument extends Document {
                 background:#FFF;
                 color: #000;
                 border: 1px solid #ddd;
+                font-size: 14px;
               }
               code {
                 font-size: 14px;
+                background: #FFF;
               }
             `}
           </style>
@@ -69,9 +85,15 @@ class MyDocument extends Document {
 						fontWeight: '300',
 						lineHeight: '1.5em',
 						backgroundColor: '#F7F9FC',
+						minHeight: '100%',
 					}}
         >
           <Main />
+          {/* Add script tag to Document Component 
+          __ENV__ double underscores is good practice when indicating that a variable is used on the browser.
+          The env obj can't be rendered as HTML because it's a str. htmlescape() allows me to stringify env.*/}
+          {/* eslint-disable-next-line react/no-danger */}
+          <script dangerouslySetInnerHTML={{ __html: `__ENV__ = ${htmlescape(env)}` }} /> 
           <NextScript />
         </body>
       </html>
@@ -106,3 +128,7 @@ MyDocument.getInitialProps = ({ renderPage }) => {
 };
 
 export default MyDocument;
+
+// Resources:
+// https://stackoverflow.com/questions/6547293/why-some-attribute-names-start-with-double-underscore-in-javascript
+// http://timelessrepo.com/json-isnt-a-javascript-subset

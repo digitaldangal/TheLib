@@ -2,7 +2,9 @@ import mongoose from 'mongoose';
 import Handlebars from 'handlebars';
 import logger from '../logs';
 
-const mongoSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const mongoSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -21,12 +23,11 @@ const mongoSchema = new mongoose.Schema({
 const EmailTemplate = mongoose.model('EmailTemplate', mongoSchema);
 
 // Inserts an email template to the DB
-
-function insertTemplate() {
+function insertTemplates() {
   const templates = [
     {
       name: 'welcome',
-      subject: 'Welcome to TheLib.org',
+      subject: 'Welcome to thelib.co',
       message: `{{userName}},
         <p>
         Thanks for signing up for The Lib!
@@ -38,12 +39,34 @@ function insertTemplate() {
         Ruben Vargas, The Lib
         `,
     },
+    {
+      // Purchase template
+      name: 'purchase',
+      subject: 'You purchased book at thelib.org',
+      message: `{{userName}},
+        <p>
+          Thank you for purchasing our book! You will get confirmation email from Stripe shortly.
+        </p>
+        <p>
+          Start reading your book: <a href="{{bookUrl}}" target="_blank">{{bookTitle}}</a>
+        </p>
+        <p>
+          If you have any questions while reading the book, 
+          please fill out an issue on 
+          <a href="https://github.com/ambition101/issues" target="blank">Github</a>.
+        </p>
+      
+        Ruben Vargas, The Lib
+      `,
+    },
   ];
   // For each template that's inserted, search the DB for templates w/ the same name.
   // Pause(await) until the count comes back. If the method finds a template w/ the same name,
   //  then the count is 1 or more and it returns undefined but
   templates.forEach(async (template) => {
-    if ((await EmailTemplate.find({ name: template.name }).count()) > 0) return;
+    if ((await EmailTemplate.find({ name: template.name }).count()) > 0) {
+      return;
+    }
     // if we can't find a template w/ the same name(count = 0),
     // create a document `EmailTemplate.create()` w/ data inside `const templates = []`
     // It will copy the name,subject and message to a brand new doc in the DB.
@@ -53,7 +76,7 @@ function insertTemplate() {
   });
 }
 
-insertTemplate();
+insertTemplates();
 // getEmailTemplate() will retrieve the EmailTemplate doc from the DB and replace variables like
 // username to docs values.
 // getEmailTemplate() is the only function being exported from this file because

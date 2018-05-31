@@ -1,12 +1,15 @@
-import mongoose from 'mongoose';
 import _ from 'lodash';
+import mongoose from 'mongoose';
 
 import generateSlug from '../utils/slugify';
+// import sendEmail from '../sendEmail';
 import sendEmail from '../aws';
-import getEmailTemplate from '../models/EmailTemplate';
+import getEmailTemplate from './EmailTemplate';
 import logger from '../logs';
 
-const userSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const userSchema = new Schema({
   googleId: {
     type: String,
     required: true,
@@ -46,11 +49,21 @@ const userSchema = new mongoose.Schema({
   githubAccessToken: {
     type: String,
   },
+  purchasedBookIds: [String],
 });
 
 class UserClass {
   static publicFields() {
-    return ['id', 'displayName', 'email', 'avatarUrl', 'slug', 'isAdmin', 'isGithubConnected'];
+    return [
+      'id',
+      'displayName',
+      'email',
+      'avatarUrl',
+      'slug',
+      'isAdmin',
+      'isGithubConnected',
+      'purchasedBookIds',
+    ];
   }
   // signInOrSignUp() will wait for
   static async signInOrSignUp({
@@ -61,11 +74,17 @@ class UserClass {
 
     if (user) {
       const modifier = {};
+      if (googleToken.accessToken) {
+        modifier.access_token = googleToken.accessToken;
+      }
 
-      modifier.access_token = googleToken.accessToken || null;
-      modifier.refresh_token = googleToken.refreshToken || null;
+      if (googleToken.refreshToken) {
+        modifier.refresh_token = googleToken.refreshToken;
+      }
 
-      if (_.isEmpty(modifier)) return user;
+      if (_.isEmpty(modifier)) {
+        return user;
+      }
       // this.updateOne() to update the users tokens, but if user !== exist, it will wait for
       await this.updateOne({ googleId }, { $set: modifier });
 
@@ -73,7 +92,7 @@ class UserClass {
     }
     // generateSlug() and then will wait for
     const slug = await generateSlug(this, displayName);
-    const userCount = await this.find().count();
+
     // this.create()
     const newUser = await this.create({
       createdAt: new Date(),
@@ -83,7 +102,6 @@ class UserClass {
       displayName,
       avatarUrl,
       slug,
-      isAdmin: userCount === 0,
     });
 
     // Make `signInOrSignUp()` wait for `getEmailTemplate()` to return the template
@@ -97,7 +115,9 @@ class UserClass {
       // from `getEmailTemplate()` to `sendEmail()`
       await sendEmail({
         from: `Ruben from The Lib <${process.env.EMAIL_SUPPORT_FROM_ADDRESS}>`,
-        to: [email], // email is a string but being passed as an array due to AWS SES API Guidelines
+        // email is a string but being passed as an array due to AWS SES API Guidelines,
+        //  or [user.email]?
+        to: [email],
         subject: template.subject,
         body: template.message,
       });
@@ -116,6 +136,3 @@ userSchema.loadClass(UserClass);
 const User = mongoose.model('User', userSchema);
 
 export default User;
-
-// TODO:
-// integrate Github Auth

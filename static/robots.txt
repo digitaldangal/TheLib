@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /books/thelib/
+Disallow: /books/
+Disallow: /books/thelib/MenuDrop
+Disallow: /books/thelib/Book
+Disallow: /books/thelib/Chapter

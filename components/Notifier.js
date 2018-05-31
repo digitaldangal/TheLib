@@ -33,7 +33,8 @@ class Notifier extends React.Component {
 	render() {
 	  const message = (
 	    // Using `dangerouslySetInnerHTML=...` to allow me and others(devs)
-	    // to use HTML code inside the Snackbars message prop
+			// to use HTML code inside the Snackbars message prop
+			// eslint-disable-next-line react/no-danger
   <span id="snackbar-message-id" dangerouslySetInnerHTML={{ __html: this.state.message }} />
 	  );
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
@@ -10,62 +11,60 @@ import withLayout from '../../lib/withLayout';
 import withAuth from '../../lib/withAuth';
 import { getBookList } from '../../lib/api/admin';
 
-
-const Index = ({
-  books,
-}) => (
-  <div style={{ padding: '10px 45px' }}>
-    <div>
-      <h2>Books</h2>
-      <Link href="/admin/add-book">
-        <Button variant="raised">Add book</Button>
-      </Link>
-      <p />
-      <ul>
-        {books.map(b => (
-          <li key={b._id}>
-            <Link
-              as={`/admin/book-detail/${b.slug}`}
-              href={`/admin/book-detail?slug=${b.slug}`}
+const Index = ({ books }) => (
+	<div style={{ padding: '10px 45px' }}>
+		<div>
+			<h2>Books</h2>
+			<Link href="/admin/add-book">
+				<Button variant="raised">Add book</Button>
+			</Link>
+			<p />
+			{/* List of books */}
+			<ul>
+				{books.map(b => (
+					<li key={b._id}>
+            <Link 
+            as={`/admin/book-detail/${b.slug}`} 
+            href={`/admin/book-detail?slug=${b.slug}`}
             >
-              <a>{b.name}</a>
-            </Link>
-          </li>
-          ))}
-      </ul>
-      <br />
-    </div>
-  </div>
+							<a>{b.name}</a>
+						</Link>
+					</li>
+				))}
+			</ul>
+			<br />
+		</div>
+	</div>
 );
 
 Index.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-  })).isRequired,
+	books: PropTypes.arrayOf(PropTypes.shape({
+			name: PropTypes.string.isRequired,
+			slug: PropTypes.string.isRequired,
+		})).isRequired,
 };
 
 class IndexWithData extends React.Component {
-  state = {
-    books: [],
-  };
+	state = {
+		books: [],
+	};
 
-  async componentDidMount() {
-    try {
-      const { books } = await getBookList();
-      this.setState({ books }); // eslint-disable-line
-    } catch (err) {
-      notify(err);
-    }
-  }
+	async componentDidMount() {
+		try {
+			const { books } = await getBookList();
+			this.setState({ books }); // eslint-disable-line
+		} catch (err) {
+			notify(err);
+		}
+	}
 
-  render() {
+	render() {
     return (
-      <Index
-        {...this.state}
-      />
+      <Index 
+      {...this.state} 
+    />
     );
-  }
+	}
 }
 
 export default withAuth(withLayout(IndexWithData), { adminRequired: true });

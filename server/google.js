@@ -1,3 +1,4 @@
+/* eslint-disable */
 import passport from 'passport';
 import { OAuth2Strategy as Strategy } from 'passport-google-oauth';
 
@@ -12,10 +13,10 @@ export default function auth({ ROOT_URL, server }) {
     if (profile.emails) {
       email = profile.emails[0].value; // Grab 1st email from emails array
     }
-    // ========================================
-    if (profile.image && profile.image.length > 0) {
+
+    if (profile.photos && profile.photos.length > 0) {
       // replace profile img sz 50 for 128
-      avatarUrl = profile.image[0].value.replace('sz=50', 'sz=128');
+      avatarUrl = profile.photos[0].value.replace('sz=50', 'sz=128');
     }
 
     try {
@@ -68,10 +69,22 @@ export default function auth({ ROOT_URL, server }) {
   server.use(passport.session());
 
   // Express routes
-  server.get('/auth/google', passport.authenticate('google', {
-    scope: ['profile', 'email'],
-    prompt: 'select_account',
-  }));
+  // Redirects user after Google login
+  server.get('/auth/google', (req, res, redirectUrl) => {
+    // Save `redirectUrl` to `req.session` obj before calling passport.
+    // This is to make sure that req.query adn req.query.redirectUrl that the latter starts with `/`
+    if (req.query && req.query.redirectUrl && req.query.redirectUrl.startsWith('/')) {
+      // if all 3 conditions are true, save redirectUrl to the session as req.session.finalUrl
+      req.session.finalUrl = req.query.redirectUrl;
+    } else {
+      req.session.finalUrl = null;
+    }
+
+    passport.authenticate('google', {
+      scope: ['profile', 'email'],
+      prompt: 'select_account',
+    })(req, res, redirectUrl);
+  });
 
   server.get(
     '/oauth2callback',
@@ -79,7 +92,13 @@ export default function auth({ ROOT_URL, server }) {
       failureRedirect: '/login',
     }),
     (req, res) => {
-      res.redirect('/admin');
+      if (req.user && req.user.isAdmin) {
+        res.redirect('/admin');
+      } else if (req.session.finalUrl) {
+        res.redirect(req.session.finalUrl);
+      } else {
+        res.redirect('/my-books');
+      }
     },
   );
 
@@ -88,3 +107,7 @@ export default function auth({ ROOT_URL, server }) {
     res.redirect('/login');
   });
 } // auth closing brace
+
+
+// Resources:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith

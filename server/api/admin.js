@@ -1,8 +1,9 @@
 // API endpoints for Admin user
 import express from 'express';
 
-
 import Book from '../models/Book';
+import { getRepos } from '../github';
+import User from '../models/User';
 import logger from '../logs';
 
 const router = express.Router();
@@ -16,8 +17,7 @@ router.use((req, res, next) => {
     // return undefined
     return;
   }
-
-  next(); // next() ends the req/res cycle
+  next();
 });
 
 // GET - a list of books from Book model
@@ -29,7 +29,6 @@ router.get('/books', async (req, res) => {
     res.json({ error: err.message || err.toString() });
   }
 });
-
 
 router.post('/books/add', async (req, res) => {
   try {
@@ -59,8 +58,47 @@ router.get('/books/detail/:slug', async (req, res) => {
   }
 });
 
+// github-related
+
+router.post('/books/sync-content', async (req, res) => {
+  const { bookId } = req.body;
+
+  const user = await User.findById(req.user._id, 'isGithubConnected githubAccessToken');
+
+  if (!user.isGithubConnected || !user.githubAccessToken) {
+    res.json({ error: 'Github not connected' });
+    return;
+  }
+
+  try {
+    await Book.syncContent({ id: bookId, githubAccessToken: user.githubAccessToken });
+    res.json({ done: 1 });
+  } catch (err) {
+    logger.error(err);
+    res.json({ error: err.message || err.toString() });
+  }
+});
+
+router.get('/github/repos', async (req, res) => {
+  const user = await User.findById(req.user._id, 'isGithubConnected githubAccessToken');
+
+  if (!user.isGithubConnected || !user.githubAccessToken) {
+    res.json({ error: 'Github not connected' });
+    return;
+  }
+
+  try {
+    const response = await getRepos({ accessToken: user.githubAccessToken });
+    res.json({ repos: response.data });
+  } catch (err) {
+    logger.error(err);
+    res.json({ error: err.message || err.toString() });
+  }
+});
+
 export default router;
 
 // Resources
 // https://expressjs.com/en/guide/using-middleware.html
 // https://expressjs.com/en/api.html#res.status
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
