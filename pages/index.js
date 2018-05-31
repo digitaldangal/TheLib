@@ -1,8 +1,7 @@
 /* eslint-disable */
+import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import React from 'react';
-import {Grid, Avatar, Button} from 'material-ui';
 
 import withAuth from '../lib/withAuth';
 import withLayout from '../lib/withLayout';
@@ -26,7 +25,8 @@ class Index extends React.Component {
 			
 				<Head>
 					<title>Settings</title>
-					<meta name="description"
+					<meta 
+					name="description"
 					content="List of purchased books."
 					/>
 				</Head>
@@ -38,6 +38,5 @@ class Index extends React.Component {
 }
 
 export default withAuth(withLayout(Index));
-// export default withAuth(withLayout(Index, { noHeader: true }), { loginRequired: false });
 
 

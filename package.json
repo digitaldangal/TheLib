@@ -3,12 +3,11 @@
 	"version": "0.0.1",
 	"license": "MIT",
 	"scripts": {
-		"dev": "nodemon server/app.js --watch server --exec babel-node --presets=@babel/preset-env",
-		"build": "next build",
+		"build": "NODE_ENV=production next build",
 		"start": "babel-node --presets=@babel/preset-env server/app.js",
+		"dev": "nodemon server/app.js --watch server --exec babel-node --presets=@babel/preset-env",
 		"lint": "eslint components pages lib server",
-		"test": "jest --coverage",
-		"heroku-postbuild": "./node_modules/next/dist/bin/next build"
+		"test": "jest --coverage"
 	},
 	"jest": {
 		"coverageDirectory": "./.coverage"
