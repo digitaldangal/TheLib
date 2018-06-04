@@ -12,7 +12,7 @@ export function stripeCharge({
     currency: 'usd',
     source: token,
     receipt_email: buyerEmail,
-    description: 'Payment for your book at thelib.co',
+    description: 'Payment for your book at thelib.tech',
   });
 }
 

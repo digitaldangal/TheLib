@@ -197,7 +197,7 @@ class BookClass {
 
     try {
       await sendEmail({
-        from: `Ruben from thelib.co <${process.env.EMAIL_SUPPORT_FROM_ADDRESS}>`,
+        from: `Ruben from thelib.tech <${process.env.EMAIL_SUPPORT_FROM_ADDRESS}>`,
         to: [user.email],
         subject: template.subject,
         body: template.message,

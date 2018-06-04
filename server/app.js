@@ -29,15 +29,11 @@ const MONGO_URL = process.env.MONGO_URL_TEST;
 // DB
 mongoose.connect(MONGO_URL);
 
-// console.log(process.env.NODE_ENV);
-// console.log(dev);
-// console.log(ROOT_URL);
 
 // Port
 const port = process.env.PORT || 8000;
 
 // Prod
-// const ROOT_URL = dev ? `http://localhost:${port}` : 'https://thelib.co';
 const ROOT_URL = getRootUrl();
 
 const URL_MAP = {

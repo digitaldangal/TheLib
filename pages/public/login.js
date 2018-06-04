@@ -13,7 +13,7 @@ function Login({ url }) {
     <div style={{ textAlign: 'center', margin: '0 20px' }}>
       <Head>
         <title>The Lib</title>
-        <meta name="description" content="Login page for thelib.co" />
+        <meta name="description" content="Login page for thelib.tech" />
       </Head>
       <br />
       <p style={{ margin: '45px auto', fontSize: '44px', fontWeight: '400' }}>Log in</p>

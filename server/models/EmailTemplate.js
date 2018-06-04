@@ -27,7 +27,7 @@ function insertTemplates() {
   const templates = [
     {
       name: 'welcome',
-      subject: 'Welcome to thelib.co',
+      subject: 'Welcome to thelib.tech',
       message: `{{userName}},
         <p>
         Thanks for signing up for The Lib!
@@ -42,7 +42,7 @@ function insertTemplates() {
     {
       // Purchase template
       name: 'purchase',
-      subject: 'You purchased book at thelib.org',
+      subject: 'You purchased book at thelib.tech',
       message: `{{userName}},
         <p>
           Thank you for purchasing our book! You will get confirmation email from Stripe shortly.

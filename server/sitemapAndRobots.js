@@ -4,7 +4,7 @@ import path from 'path';
 import Chapter from './models/Chapter';
 
 const sitemap = sm.createSitemap({
-  hostname: 'https://thelib.co',
+  hostname: 'https://thelib.tech',
   cacheTime: 600000, // 600 sec - cache purge period
 });
 

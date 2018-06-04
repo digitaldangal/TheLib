@@ -4,7 +4,7 @@
     "StripePublishableKey": "pk_test_ZqJT3M12CfrsqrpRM31I4wkF"
   },
   "dotenv": true,
-  "alias": "thelib.co",
+  "alias": "thelib.tech",
   "scale": {
     "sfo1": {
       "min": 1,
