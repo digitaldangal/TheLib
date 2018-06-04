@@ -31,7 +31,7 @@ class MyDocument extends Document {
 
           <link
             rel="shortcut icon"
-            href="https://storage.googleapis.com/thelib/princess.png"
+            href="https://storage.googleapis.com/thelib/thelib.png"
           />
           <link
             rel="stylesheet"
@@ -40,9 +40,9 @@ class MyDocument extends Document {
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
           <link
             rel="stylesheet"
-            href="https://storage.googleapis.com/builderbook/nprogress.min.css"
+            href="https://storage.googleapis.com/thelib/thelib/nprogress.min.css"
           />
-          <link rel="stylesheet" href="https://storage.googleapis.com/builderbook/vs.min.css" />
+          <link rel="stylesheet" href="https://storage.googleapis.com/thelib/thelib/vs.min.css" />
 
           <style>
             {`

@@ -51,7 +51,7 @@ function Header({ user, hideHeader, redirectUrl }) {
 						{!user ? (
 							<Link prefetch href="/">
 								<Avatar
-									src="https://storage.googleapis.com/thelib/princess.png"
+									src="https://storage.googleapis.com/thelib/thelib.png"
 									alt="The Lib logo"
 									style={{ margin: '0px auto 0px 10px', cursor: 'pointer' }}
 								/>

@@ -112,7 +112,7 @@ const Index = ({ user }) => (
         </Grid>
         <Grid item sm={4} xs={12} style={styleTeamMember}>
           <Avatar
-            src="https://storage.googleapis.com/thelib/12_21985266_282018872314827_2911520779059331072_n.jpg"
+            src="https://storage.googleapis.com/thelib/ruben.jpg"
             style={styleBigAvatar}
             alt="Ruben Vargas"
           />
