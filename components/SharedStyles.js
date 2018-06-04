@@ -2,7 +2,6 @@ const styleBigAvatar = {
   width: '80px',
   height: '80px',
   margin: '0px auto 15px',
-
 };
 
 const styleRaisedButton = {
@@ -45,6 +44,18 @@ const styleGrid = {
   lineHeight: '1.5em',
 };
 
+const styleH1 = {
+  textAlign: 'center',
+  fontWeight: '400',
+  lineHeight: '45px',
+  font: '44px Muli',
+};
+
+const styleHomepageFeature = {
+  textAlign: 'center',
+  padding: '10px 45px',
+};
+
 module.exports = {
   styleBigAvatar,
   styleRaisedButton,
@@ -53,4 +64,6 @@ module.exports = {
   styleTextField,
   styleForm,
   styleGrid,
+  styleH1,
+  styleHomepageFeature,
 };

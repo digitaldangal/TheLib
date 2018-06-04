@@ -15,7 +15,6 @@ import { subscribe } from '../mailchimp';
 import generateSlug from '../utils/slugify';
 import logger from '../logs';
 
-
 // const ROOT_URL = process.env.ROOT_URL || http://localhost:${process.env.PORT || 8000};
 const ROOT_URL = getRootUrl();
 
@@ -65,9 +64,7 @@ class BookClass {
     // convert the book doc into plain a plain JS obj if a book is found
     const book = bookDoc.toObject();
     // Retrieve chapters for table of contents
-    book.chapters = (await Chapter.find({ bookId: book._id }, 'title slug')
-      .sort({ order: 1 }))
-      .map(chapter => chapter.toObject());
+    book.chapters = (await Chapter.find({ bookId: book._id }, 'title slug').sort({ order: 1 })).map(chapter => chapter.toObject());
     return book;
   }
   // add() adds a new book to the Book collection
@@ -103,9 +100,10 @@ class BookClass {
       modifier.slug = await generateSlug(this, name);
     }
     // Mongo's $set operator will replace the value of (name,slug,price,githubRepo) w/ new vals
-    return this.updateOne({ _id: id }, { $set: modifier });
+    await this.updateOne({ _id: id }, { $set: modifier });
+    const editedBook = await this.findById(id, 'slug');
+    return editedBook;
   }
-
 
   static async syncContent({ id, githubAccessToken }) {
     const book = await this.findById(id, 'githubRepo githubLastCommitSha');
