@@ -1,3 +1,4 @@
+/* eslint-disable */
 import generateSlug from '../../../server/utils/slugify';
 
 const MockUser = {
