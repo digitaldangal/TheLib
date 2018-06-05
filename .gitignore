@@ -7,9 +7,9 @@ npm-debug.log
 .build/*
 .next
 .vscode/
+.vscode
 node_modules/
 .coverage
 .env
 .next
-
 yarn-error.log
