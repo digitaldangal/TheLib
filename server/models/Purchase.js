@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 
+
 const { Schema } = mongoose;
+
+// class PurchaseClass{}
 
 const purchaseSchema = new Schema({
   userId: {
@@ -15,6 +18,30 @@ const purchaseSchema = new Schema({
     type: Number,
     required: true,
   },
+  bookmarks: [
+    {
+      chapterId: {
+        type: Schema.Types.ObjectId,
+        required: true,
+      },
+      chapterSlug: {
+        type: String,
+        required: true,
+      },
+      chapterOrder: {
+        type: Number,
+        required: true,
+      },
+      text: {
+        type: String,
+        required: true,
+      },
+      hash: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   createdAt: {
     type: Date,
     required: true,
@@ -27,7 +54,13 @@ const purchaseSchema = new Schema({
     paid: Boolean,
     status: String,
   },
+  isFree: {
+    type: Boolean,
+    defaultValue: false,
+  },
 });
+
+// purchaseSchema.loadClass(PurchaseClass);
 
 purchaseSchema.index({ bookId: 1, userId: 1 }, { unique: true });
 
