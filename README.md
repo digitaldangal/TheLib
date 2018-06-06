@@ -1,10 +1,24 @@
-## The Lib
+# The Lib
 
-```The Lib is a web application to publish documentation or books. The app is built with React/Material-UI/Next.js/Express/Mongoose/MongoDB and includes 3rd party APIs such as: Google, Github, AWS SES, Mailchimp and Stripe.```
+```The Lib  is a web application to publish documentation or books. The app is built with React/Material-UI/Next.js/Express/Mongoose/MongoDB and includes 3rd party APIs such as: Google, Github, AWS SES, Mailchimp and Stripe.```
 
 ## Live Demo
 
 - Live app:  [thelib.tech](https://thelib.tech/)
+
+Test the app by following the instructions below.
+
+### Instructions
+Follow this link [Demo](https://thelib.tech/books/mybook/introduction)
+You will have access to read the introduction and chapter 1.
+You will be asked for payment when you reach chapter 2.
+Enter the following registered CC for test purposes.
+
+```
+Card number: 4242 4242 4242 4242
+Exp: any future date, let's say 06/20
+CVV: 4242
+```
 
 ## Getting Started
 
