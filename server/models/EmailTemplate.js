@@ -26,6 +26,7 @@ const EmailTemplate = mongoose.model('EmailTemplate', mongoSchema);
 function insertTemplates() {
   const templates = [
     {
+      // welcome template
       name: 'welcome',
       subject: 'Welcome to thelib.tech',
       message: `{{userName}},

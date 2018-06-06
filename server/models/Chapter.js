@@ -1,11 +1,12 @@
+// Absolute
 import mongoose from 'mongoose';
 import marked from 'marked';
 import he from 'he';
 import hljs from 'highlight.js';
-import generateSlug from '../utils/slugify';
-
+// Relative
 import Book from './Book';
 import Purchase from './Purchase';
+import generateSlug from '../utils/slugify';
 
 function markdownToHtml(content) {
   const renderer = new marked.Renderer();

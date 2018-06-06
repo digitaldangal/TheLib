@@ -1,15 +1,15 @@
 /* eslint-disable */
+// Absolute
 import React from 'react';
 import PropTypes from 'prop-types';
 import Error from 'next/error';
 import Head from 'next/head';
 import throttle from 'lodash/throttle';
-
 import Link from 'next/link';
 
+// Relative
 import Header from '../../components/Header';
 import BuyButton from '../../components/customer/BuyButton';
-
 import { getChapterDetail } from '../../lib/api/public';
 import withLayout from '../../lib/withLayout';
 import withAuth from '../../lib/withAuth';
@@ -63,12 +63,8 @@ class ReadChapter extends React.Component {
 
     let htmlContent = '';
 
-    // if (chapter) { Remove this
-    //   htmlContent = chapter.htmlContent;
-    // }
-
     // Makes sure that full content of chapter.htmlContent is displayed when
-    // 1. user purchased book 2. user is an Admin 3. Admin specified `isFree:true` in the metadata of the .md page
+    // 1. user purchased book 2. user is an Admin 3. Admin specified `isFree:true` in the `.md` page
     if (chapter && (chapter.isPurchased || chapter.isFree)) {
       htmlContent = chapter.htmlContent;
     } else {

@@ -1,4 +1,5 @@
 // API endpoints for Admin user
+// This route calls and waits for `Book.list()`
 import express from 'express';
 
 import Book from '../models/Book';

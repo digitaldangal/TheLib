@@ -1,22 +1,20 @@
-/* eslint-disable */
-import mongoose from 'mongoose';
+// Absolute
 import frontmatter from 'front-matter';
+import mongoose from 'mongoose';
 
+// Relative
 import getRootUrl from '../../lib/api/getRootUrl';
 import Chapter from './Chapter';
 import Purchase from './Purchase';
-import getEmailTemplate from './EmailTemplate';
 import User from './User';
-
-import { stripeCharge } from '../stripe';
+import getEmailTemplate from './EmailTemplate';
 import { getCommits, getContent } from '../github';
+import { stripeCharge } from '../stripe';
 import sendEmail from '../aws';
 import { subscribe } from '../mailchimp';
-
-import generateSlug from '../utils/slugify';
 import logger from '../logs';
+import generateSlug from '../utils/slugify';
 
-// const ROOT_URL = process.env.ROOT_URL || http://localhost:${process.env.PORT || 8000};
 const ROOT_URL = getRootUrl();
 
 const { Schema } = mongoose;
@@ -65,7 +63,7 @@ class BookClass {
     // convert the book doc into plain a plain JS obj if a book is found
     const book = bookDoc.toObject();
     // Retrieve chapters for table of contents
-    book.chapters = (await Chapter.find({ bookId: book._id }, 'title slug').sort({ order: 1 })).map(chapter => chapter.toObject());
+    book.chapters = (await Chapter.find({ bookId: book._id }, 'title slug').sort({ order: 1 })).map(chapter => chapter.toObject()); // eslint-disable-line
     return book;
   }
   // add() adds a new book to the Book collection
@@ -84,7 +82,7 @@ class BookClass {
       createdAt: new Date(),
     });
   }
-  // edit() finds/edits a book by name,pr,repo - ADMIN only
+  // `edit()` finds/edits a book by name,pr,repo - ADMIN only!
   static async edit({
     id, name, price, githubRepo,
   }) {
@@ -105,7 +103,7 @@ class BookClass {
     const editedBook = await this.findById(id, 'slug');
     return editedBook;
   }
-
+  // `syncContent()` finds a book by id
   static async syncContent({ id, githubAccessToken }) {
     const book = await this.findById(id, 'githubRepo githubLastCommitSha');
 
@@ -213,7 +211,7 @@ class BookClass {
       logger.error('Mailchimp error:', error);
     }
 
-    // create new Purchase document in the DB
+    // creates a new Purchase document in the DB
     return Purchase.create({
       userId: user._id,
       bookId: book._id,
