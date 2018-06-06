@@ -1,6 +1,14 @@
 # The Lib
 
-```The Lib  is a web application to publish documentation or books. The app is built with React/Material-UI/Next.js/Express/Mongoose/MongoDB and includes 3rd party APIs such as: Google, Github, AWS SES, Mailchimp and Stripe.```
+![image](https://user-images.githubusercontent.com/20441870/41067358-49040f56-69b3-11e8-857b-7aaa9c8d275c.png)
+
+![image](https://user-images.githubusercontent.com/20441870/41067589-3311b418-69b4-11e8-820e-662c175ddf44.png)
+
+
+```The Lib  is a web application to publish documentation or books written in Markdown. It was built with React/Material-UI/Next.js/Express/Mongoose/MongoDB and includes 3rd party APIs such as: Google, Github, AWS, Mailchimp and Stripe.```
+
+
+_The Lib was developed in two weeks as part of my final project at Ironhack Miami._
 
 ## Live Demo
 
@@ -10,9 +18,10 @@ Test the app by following the instructions below.
 
 ### Instructions
 Follow this link [Demo](https://thelib.tech/books/mybook/introduction)
-You will have access to read the introduction and chapter 1.
-You will be asked for payment when you reach chapter 2.
-Enter the following registered CC for test purposes.
+
+You will have access to the introduction and chapter 1 but
+you will be asked for payment when you reach chapter 2.
+Enter the following CC for test purposes.
 
 ```
 Card number: 4242 4242 4242 4242
@@ -47,33 +56,32 @@ To use all features and third-party integrations (such as Stripe, Google OAuth, 
 `.env` :
 
 ```
-# server/app.js
+# MongoDB
 MONGO_URL="xxxxxx"
 MONGO_URL_TEST="xxxxxx"
-SESSION_SECRET="xxxxxx"
 
-# server/google.js
+# Google
 Google_clientID="xxxxxx"
 Google_clientSecret="xxxxxx"
 
-# server/aws.js
+# AWS
 Amazon_accessKeyId="xxxxxx"
 Amazon_secretAccessKey="xxxxxx"
 
-# server/models/User.js
+# Support
 EMAIL_SUPPORT_FROM_ADDRESS="xxxxxx"
 
-# server/github.js
+# Github
 Github_Test_ClientID="xxxxxx"
 Github_Test_SecretKey="xxxxxx"
 Github_Live_ClientID="xxxxxx"
 Github_Live_SecretKey="xxxxxx"
 
-# server/stripe.js
+# Stripe
 Stripe_Test_SecretKey="xxxxxx"
 Stripe_Live_SecretKey="xxxxxx"
 
-# server/mailchimp.js
+# Mail Chimp
 MAILCHIMP_API_KEY="xxxxxx"
 MAILCHIMP_REGION="xxxxxx"
 MAILCHIMP_SIGNUPS_LIST_ID="xxxxxx"
@@ -81,7 +89,6 @@ MAILCHIMP_PURCHASED_LIST_ID="xxxxxx"
 MAILCHIMP_TUTORIALS_LIST_ID="xxxxxx"
 ```
 
-- The _first registered user_ in the app becomes an Admin user (user document gets parameters  `"isAdmin": true`).
 
 ## Add a new book
 - Create a new Github repo (public or private).
@@ -131,6 +138,17 @@ Some comments in the source code are personal notes and therefore might not seem
 - AWS SES
 - Stripe
 - MailChimp
+
+#### Unit Test
+- Jest
+
+#### Upcoming Features
+
+- Bookmarks
+- Additional Integration (e.g. Pandoc)
+- Dark theme toggle
+- Smoother deployment with Docker
+
 
 ### Platform
 
